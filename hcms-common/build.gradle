@@ -1,0 +1,9 @@
+version = '1.0.0'
+description = 'Common Module (Helper)'
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-hateoas:$project.ext.springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-security:$project.ext.springBootVersion")
+	compile("org.aspectj:aspectjrt:1.8.5")
+	compile("org.aspectj:aspectjweaver:1.8.0")
+}

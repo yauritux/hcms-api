@@ -1,0 +1,31 @@
+version = '1.0.0'
+description = 'Core Application Module'
+
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+		maven { url "http://oss.jfrog.org/artifactory/oss-release-local" }
+	}
+	
+	dependencies {
+		classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
+	}
+}
+
+apply plugin: 'org.flywaydb.flyway'
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web:$project.ext.springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-data-jpa:$project.ext.springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-jdbc:$project.ext.springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-security:$project.ext.springBootVersion")
+	compile("postgresql:postgresql:9.1-901.jdbc4")
+	compile project(':hcms-common')
+}
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/hcms'
+	user = 'hcms'
+	password = 'hcmsP@ssw0rd%$#@!'
+}
