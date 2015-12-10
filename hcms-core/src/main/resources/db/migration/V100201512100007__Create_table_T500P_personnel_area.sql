@@ -1,0 +1,20 @@
+CREATE TABLE T500P (
+    PERSA character varying(10) not null,
+    BUKRS character varying(10) not null,
+    PBTXT character varying(255) not null,
+    NAME2 character varying(255)
+);
+
+COMMENT ON TABLE T500P IS 'Table master for Personnel Area (Infotype T500P in SAP)';
+
+COMMENT ON COLUMN T500P.PERSA IS 'Personnel Area Code';
+
+COMMENT ON COLUMN T500P.BUKRS IS 'Company Code';
+
+COMMENT ON COLUMN T500P.PBTXT IS 'Personnel Area Text';
+
+COMMENT ON COLUMN T500P.NAME2 IS 'Name 2';
+
+ALTER TABLE T500P ADD PRIMARY KEY (PERSA, BUKRS);
+
+ALTER TABLE T500P ADD FOREIGN KEY (BUKRS) REFERENCES T001(BUKRS) ON UPDATE CASCADE ON DELETE RESTRICT;

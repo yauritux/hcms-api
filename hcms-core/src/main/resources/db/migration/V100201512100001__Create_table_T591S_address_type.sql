@@ -1,0 +1,15 @@
+CREATE TABLE T591S (
+    INFTY character varying(4) NOT NULL,
+    SUBTY character varying(4) NOT NULL,
+    STEXT character varying(40) NOT NULL
+);
+
+ALTER TABLE T591S ADD PRIMARY KEY (INFTY, SUBTY);
+
+COMMENT ON TABLE T591S IS 'Table master for Address Type (Infotype T591S in SAP)';
+
+COMMENT ON COLUMN T591S.INFTY IS 'Infotype';
+
+COMMENT ON COLUMN T591S.SUBTY IS 'Subtype';
+
+COMMENT ON COLUMN T591S.STEXT IS 'Name';

@@ -1,0 +1,20 @@
+CREATE TABLE V_001P_ALL (
+    WERKS character varying(10) NOT NULL,
+    BTRTL character varying(10) NOT NULL,
+    NAME1 character varying(255),
+    BTEXT character varying(255) NOT NULL
+);
+
+ALTER TABLE V_001P_ALL ADD PRIMARY KEY (WERKS, BTRTL);
+
+--ALTER TABLE V_001P_ALL ADD FOREIGN KEY (WERKS) REFERENCES T500P(PERSA) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+COMMENT ON TABLE V_001P_ALL IS 'Table master for Personnel Subarea (Infotype V_001P_ALL)';
+
+COMMENT ON COLUMN V_001P_ALL.WERKS IS 'Code of Personnel Area';
+
+COMMENT ON COLUMN V_001P_ALL.BTRTL IS 'Code of Personnel Sub-Area';
+
+COMMENT ON COLUMN V_001P_ALL.NAME1 IS 'Personnel Area text';
+
+COMMENT ON COLUMN V_001P_ALL.BTEXT IS 'Personnel Sub-Area text';

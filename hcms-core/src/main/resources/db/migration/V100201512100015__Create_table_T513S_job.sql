@@ -1,0 +1,18 @@
+CREATE TABLE T513S (
+    STELL BIGINT NOT NULL,
+    ENDDA timestamp with time zone NOT NULL,
+    BEGDA timestamp with time zone,
+    STLTX character varying(100) NOT NULL
+);
+
+ALTER TABLE T513S ADD PRIMARY KEY (STELL, ENDDA);
+
+COMMENT ON TABLE T513S IS 'Table master for Job Title';
+
+COMMENT ON COLUMN T513S.STELL IS 'Job Key';
+
+COMMENT ON COLUMN T513S.ENDDA IS 'End Date';
+
+COMMENT ON COLUMN T513S.BEGDA IS 'Start Date';
+
+COMMENT ON COLUMN T513S.STLTX IS 'Job Title';
