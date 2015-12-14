@@ -23,7 +23,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @version 1.0.0
  * @since 1.0.0
  *
- * Base entity model. All entities should be inherited from this abstract class.
+ * Base entity model. All entities should be inherited from this abstract class, 
+ * except for tables those inherited from SAP.
  */
 @MappedSuperclass
 public abstract class AbstractEntity implements Persistable<String> {
