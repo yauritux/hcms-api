@@ -1,1 +1,1 @@
-include 'hcms-core', 'hcms-common'
+include 'hcms-core', 'hcms-common', 'hcms-rest-api'

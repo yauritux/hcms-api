@@ -1,0 +1,40 @@
+buildscript {
+  repositories {
+    maven { url "https://repo.spring.io/libs-milestone" }
+    maven { url "https://repo.spring.io/libs-snapshot" }
+    maven { url "https://repo.spring.io/libs-release" }
+    mavenCentral()
+    jcenter()
+    maven { url "http://oss.jfrog.org/artifactory/oss-release-local" }
+  }
+
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:$project.ext.springBootVersion")
+  }
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+war {
+  baseName = 'hcms-api'
+  version = '1.0.0'
+}
+
+version = '1.0.0'
+description = 'HCMS REST API Module'
+
+configurations {
+  providedRuntime
+}
+
+dependencies {
+  compile("org.springframework.boot:spring-boot-starter-web:$project.ext.springBootVersion")
+  compile("org.springframework.boot:spring-boot-starter-actuator:$project.ext.springBootVersion")
+  compile("org.springframework.boot:spring-boot-starter-hateoas:$project.ext.springBootVersion")
+  compile("org.springframework.boot:spring-boot-starter-logging:$project.ext.springBootVersion")
+  compile("org.springframework.boot:spring-boot-starter-security:$project.ext.springBootVersion")
+  compile("postgresql:postgresql:9.1-901.jdbc4")
+  compile project(':hcms-core'), project(':hcms-common')
+  providedRuntime("org.springframework.boot:spring-boot-starter-tomcat:$project.ext.springBootVersion")
+}
