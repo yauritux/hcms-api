@@ -1,0 +1,1 @@
+ALTER TABLE IT0006 ALTER COLUMN AEDTM SET DEFAULT timezone('utc'::text, now());
