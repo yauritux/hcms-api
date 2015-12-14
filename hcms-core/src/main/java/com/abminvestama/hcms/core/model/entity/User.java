@@ -1,4 +1,4 @@
-package com.abminvestama.hcms.model.entity;
+package com.abminvestama.hcms.core.model.entity;
 
 import java.util.Collection;
 import java.util.Collections;

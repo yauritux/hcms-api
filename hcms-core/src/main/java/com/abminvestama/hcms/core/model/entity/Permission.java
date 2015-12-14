@@ -1,4 +1,4 @@
-package com.abminvestama.hcms.model.entity;
+package com.abminvestama.hcms.core.model.entity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-import com.abminvestama.hcms.model.constant.AccessPermissionType;
+import com.abminvestama.hcms.core.model.constant.AccessPermissionType;
 
 /**
  * 

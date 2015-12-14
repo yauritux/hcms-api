@@ -1,4 +1,4 @@
-package com.abminvestama.hcms.model.constant;
+package com.abminvestama.hcms.core.model.constant;
 
 /**
  * 

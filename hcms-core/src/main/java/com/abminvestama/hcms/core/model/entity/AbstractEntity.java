@@ -1,4 +1,4 @@
-package com.abminvestama.hcms.model.entity;
+package com.abminvestama.hcms.core.model.entity;
 
 import java.util.Date;
 
@@ -104,6 +104,10 @@ public abstract class AbstractEntity implements Persistable<String> {
 	
 	public Date getDeletedAt() {
 		return deletedAt;
+	}
+	
+	public void setDeletedAt(Date deletedAt) {
+		this.deletedAt = deletedAt;
 	}
 	
 	public String getDeletedById() {
