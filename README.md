@@ -65,10 +65,13 @@ This README would normally document whatever steps are necessary to get your app
 * * *
 ### Writing tests ###
 There's only one rule to write your unit test. i.e. name of the method should be written in 3 parts, and each part is splitted by underscore character ('_') as shown below:
+
 `public void part1_part2_part3()`
-* part1 represents the name of the method under testing
+
+* part1 represents the name of the method which is under testing
 * part2 represents the scenario / test case
 * part3 represents the expected result
+
 e.g. : `public void findRoleByName_existingName_roleObjectIsReturned()`
 
 * * *
