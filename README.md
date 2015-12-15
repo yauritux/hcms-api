@@ -20,7 +20,7 @@ This README would normally document whatever steps are necessary to get your app
 
     + run as **spring-boot** application
         * open the terminal/console
-        * `cd` to `hcm`
+        * `cd` to `hcms-api`
         * execute as 'spring-boot' application simply by running `gradle bootRun`
     + deploy as **war** 
         * build the **war** simply by running the command `gradle clean build`, then deploy that war to preconfigured web container such as **tomcat**, **jetty**, or any other web/servlet container. 
@@ -36,7 +36,7 @@ This README would normally document whatever steps are necessary to get your app
 
     > Example of Request : 
 
-     `curl -i -H 'Content-Type: application/json' -X POST -d '{"username": "532231", "password":"532231"}' http://localhost:8080/api/login`
+     `curl -i -H 'Content-Type: application/json' -X POST -d '{"username": "yauritux", "password":"test123"}' http://localhost:8080/api/login`
 
     > Example of Response : 
 
@@ -56,30 +56,11 @@ This README would normally document whatever steps are necessary to get your app
                 }
             },
             "logged_in_time": 1435735220926,
-            "current_user": "532231",
+            "current_user": "yauritux",
             "auth_token": "67f9d917a60f713299ebd46de8a09e795ebbbbd4103e9ce89dcde421b14b5dd3a738de626a547fd668822c905d795602e5e161577d946b1d2c5b56955b18728a"
         },
-        "apiVersion": "2.1.0"
+        "apiVersion": "1.0.0"
     }`
-
-    #### Create new IPT ####
-
-    > Example of Request:
-
-     `curl -i -H 'Content-Type: application/json' -H 'X-Auth-Token: 67f9d917a60f713299ebd46de8a09e795ebbbbd4103e9ce89dcde421b14b5dd3a738de626a547fd668822c905d795602e5e161577d946b1d2c5b56955b18728a' -d '{"period_seq": 7}' http://localhost:8080/api/pms/ipt/ipts`
-
-    > Example of Response : 
-
-    `{
-        "data":
-        {
-           ......
-        },
-        "apiVersion": "2.1.0",
-        "message": null,
-        "page": null
-    }`
-
 
 * * *
 ### Writing tests ###
