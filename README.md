@@ -6,12 +6,15 @@ This README would normally document whatever steps are necessary to get your app
 
 ## How do I get set up? ##
 
-1. Setup the database in your local environment (suppose you've already known about how to do this)
+1. Install PostgreSQL in your local environment (suppose you've already known about how to do this)
+1. Login to PostgreSQL and create new database named `hcms`. Leave it empty for now.
 1. Configuration 
    >* install and configure `JAVA_HOME` path in your local environment.
 1. Dependencies 
    >* **Gradle 2+**
    >* **JDK/JRE 8**
+1. Execute DDL Scripts (Import database tables)
+   >* You can do this simply just by running command `gradle flywayMigrate -i` from within `hcms-core` directory.
 1. Database configuration
    >* please adjust the db connection to match your local DB configuration. You can do this by replacing the database property values which can be found in `hrms-api/hrms-rest-api/src/main/resources/application.properties` file.
 1. How to run tests
