@@ -42,5 +42,20 @@ public class Page {
 		this.totalElements = totalElements;
 	}
 	
+	@JsonProperty("total_pages")
+	public int getTotalPages() {
+		return totalPages;
+	}
 	
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+	
+	public void setNumber(int number) {
+		this.number = number;
+	}
 }
