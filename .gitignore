@@ -11,3 +11,4 @@ bin/**
 bin/**/*.class
 *.class
 **/*.class
+hcms-rest-api/src/main/resources/application.properties
