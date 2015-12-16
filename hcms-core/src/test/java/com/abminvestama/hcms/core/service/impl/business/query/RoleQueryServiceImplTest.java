@@ -55,7 +55,7 @@ public class RoleQueryServiceImplTest extends BaseCoreServiceTester {
 	}
 	
 	@Test(timeout = 1000)
-	public void findByName_noNameSupplied_noRoleObjectIsPresent() {
+	public void findByName_noNameSupplied_noRoleObjectIsReturned() {
 		Optional<Role> role = roleQueryService.findByName(Optional.ofNullable(null));
 		assertFalse(role.isPresent());
 	}
