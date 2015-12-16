@@ -60,7 +60,7 @@ public class CSKTKey implements Serializable {
 			return false;
 		}
 
-		if (datbi != null ? !datbi.equals(key.getDatbi()) : key.datbi != null) {
+		if (datbi != null ? (datbi.compareTo(key.getDatbi()) != 0) : key.datbi != null) {
 			return false;
 		}
 
