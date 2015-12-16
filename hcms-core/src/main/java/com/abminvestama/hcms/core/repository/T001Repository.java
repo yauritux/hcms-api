@@ -1,6 +1,8 @@
 package com.abminvestama.hcms.core.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.abminvestama.hcms.core.model.entity.T001;
 
@@ -13,7 +15,9 @@ import com.abminvestama.hcms.core.model.entity.T001;
  * Company Repository (DAO) Interface.
  *
  */
-public interface T001Repository extends CrudRepository<T001, String> {
+public interface T001Repository extends PagingAndSortingRepository<T001, String> {
 
 	T001 findByBukrs(String bukrs);
+	
+	Page<T001> findAll(Pageable pageRequest);
 }

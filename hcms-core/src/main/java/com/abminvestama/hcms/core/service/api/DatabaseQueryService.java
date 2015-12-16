@@ -19,12 +19,12 @@ public interface DatabaseQueryService<T extends java.io.Serializable, K extends 
 	 * @param id instance of K used as an ID/PK
 	 * @return instance of T wrapped within Optional to avoid NPE
 	 */
-	public Optional<T> findById(Optional<K> id);
+	Optional<T> findById(Optional<K> id);
 	
 	/**
 	 * Fetch all T entities.
 	 * 
 	 * @return collection of T wrapped within Optional to avoid NPE
 	 */
-	public Optional<Collection<T>> fetchAll();
+	Optional<Collection<T>> fetchAll();	
 }
