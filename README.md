@@ -64,6 +64,8 @@ This README would normally document whatever steps are necessary to get your app
         },
         "apiVersion": "1.0.0"
     }`
+    
+    Subsequently, you need to provide the `username` and it's `auth_token` in every API call.  
 
 * * *
 ### Writing tests ###
