@@ -1,6 +1,7 @@
 package com.abminvestama.hcms.core.service.api.business.query;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import com.abminvestama.hcms.core.model.entity.Role;
 import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
@@ -15,7 +16,7 @@ import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
  * This class contains all query operations for object <code>Role</code> in the system.
  *
  */
-public interface RoleQueryService extends DatabaseQueryService<Role> {
+public interface RoleQueryService extends DatabaseQueryService<Role, UUID> {
 
 	public Optional<Role> findByName(final Optional<String> name);
 }

@@ -1,6 +1,7 @@
 package com.abminvestama.hcms.core.service.api.business.query;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -17,7 +18,7 @@ import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
  * This class contains all query operations for object <code>User</code> in the system.
  *
  */
-public interface UserQueryService extends DatabaseQueryService<User>, UserDetailsService {
+public interface UserQueryService extends DatabaseQueryService<User, UUID>, UserDetailsService {
 
 	Optional<User> findByUsername(final Optional<String> username);
 }

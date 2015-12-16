@@ -2,7 +2,6 @@ package com.abminvestama.hcms.core.service.api;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * 
@@ -12,15 +11,15 @@ import java.util.UUID;
  *
  * Common interface for database query. 
  */
-public interface DatabaseQueryService<T extends java.io.Serializable> {
+public interface DatabaseQueryService<T extends java.io.Serializable, K extends java.io.Serializable> {
 
 	/**
-	 * Find T by it's ID.
+	 * Find T by it's ID of type K.
 	 * 
-	 * @param id
+	 * @param id instance of K used as an ID/PK
 	 * @return instance of T wrapped within Optional to avoid NPE
 	 */
-	public Optional<T> findById(Optional<UUID> id);
+	public Optional<T> findById(Optional<K> id);
 	
 	/**
 	 * Fetch all T entities.
