@@ -2,6 +2,7 @@ package com.abminvestama.hcms.core.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -19,6 +20,7 @@ public class T001 implements java.io.Serializable {
 
 	private static final long serialVersionUID = -7491480581768432565L;
 
+	@Id
 	@Column(name = "bukrs", length = 10, nullable = false, unique = true, updatable = false)
 	private String bukrs;
 	

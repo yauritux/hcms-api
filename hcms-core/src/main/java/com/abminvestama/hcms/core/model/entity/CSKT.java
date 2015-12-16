@@ -5,9 +5,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.abminvestama.hcms.core.model.entity.pk.CSKTKey;
 
 /**
  * 
@@ -20,17 +25,23 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "cskt")
+@IdClass(CSKTKey.class)
 public class CSKT implements Serializable {
 
 	private static final long serialVersionUID = 666082749895062689L;
 
+	@Id
+	@ManyToOne
 	@Column(name = "kokrs", length = 10, nullable = false)
 	private String kokrs;
 	
+	@Id
+	@ManyToOne
 	@Column(name = "kostl", length = 10, nullable = false)
 	private String kostl;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Id
+	@Temporal(TemporalType.DATE)
 	@Column(name = "datbi", nullable = false)
 	private Date datbi;
 	
