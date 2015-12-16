@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -22,7 +21,6 @@ public class T549T implements Serializable {
 
 	private static final long serialVersionUID = 1687217694650531445L;
 
-	@Id
 	@Column(name = "abkrs", length = 10, nullable = false, unique = true, updatable = false)
 	private String abkrs;
 	
