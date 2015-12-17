@@ -45,6 +45,10 @@ public class T001Controller extends AbstractResource {
 			@RequestParam(required = true, value = "username", defaultValue = "") String username,
 			@RequestParam(required = true, value = "auth_token", defaultValue = "") String authToken) throws Exception {
 		
+		if (authToken == null || authToken.isEmpty()) {
+			throw new Exception("No token provided");
+		}
+		
 		Page<T001> resultPage = t001QueryService.fetchAllWithPaging(pageNumber);
 		
 		APIResponseWrapper<Page<T001>> response = new APIResponseWrapper<>();
