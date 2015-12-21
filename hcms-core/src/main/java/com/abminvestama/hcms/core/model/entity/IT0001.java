@@ -23,9 +23,11 @@ import javax.persistence.TemporalType;
  * Class that represents Personal Organization Assignments (i.e. IT0001 in SAP)
  *
  */
+/*
 @Entity
 @Table(name = "it0001")
 @IdClass(IT0001Key.class)
+*/
 public class IT0001 implements Serializable {
 
 	private static final long serialVersionUID = -1658087600792527800L;
@@ -55,11 +57,8 @@ public class IT0001 implements Serializable {
 	private String uname;
 	
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name = "werks", referencedColumnName = "persa"),
-		@JoinColumn(name = "bukrs", referencedColumnName = "bukrs")
-	})
-	private T500P t500p;
+	@JoinColumn(name = "bukrs", referencedColumnName = "bukrs")
+	private T001 t001;
 	
 	@ManyToOne
 	@JoinColumn(name = "persg", referencedColumnName = "persg")
@@ -74,4 +73,29 @@ public class IT0001 implements Serializable {
 	
 	@Column(name = "gsber", length = 10)
 	private String gsber;
+	
+	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name = "werks", referencedColumnName = "werks"),
+		@JoinColumn(name = "btrtl", referencedColumnName = "btrtl")
+	})
+	private V001PAll v001pall;
+	
+	@ManyToOne
+	@JoinColumn(name = "abkrs", referencedColumnName = "abkrs")
+	private T549T t549t;
+	
+	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name = "kokrs", referencedColumnName = "kokrs"),
+		@JoinColumn(name = "kostl", referencedColumnName = "kostl")
+	})
+	private CSKT cskt;
+	
+	@ManyToOne
+	@JoinColumns({
+		@JoinColumn(name = "orgeh", referencedColumnName = "orgeh"),
+		@JoinColumn(name = "endda", referencedColumnName = "endda")
+	})
+	private T527X t527x;
 }

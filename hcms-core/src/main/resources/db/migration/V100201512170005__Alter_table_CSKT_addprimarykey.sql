@@ -1,0 +1,1 @@
+ALTER TABLE CSKT ADD PRIMARY KEY (kokrs, kostl);
