@@ -14,7 +14,7 @@ This README would normally document whatever steps are necessary to get your app
    >* **Gradle 2+**
    >* **JDK/JRE 8**
 1. Execute DDL Scripts (Import database tables)
-   >* You can do this simply just by running command `gradle flywayMigrate -i` from within `hcms-core` directory.
+   >* You can do this simply just by running command `gradle flywayMigrate -i` from the terminal (console) within `hcms-core` directory.
 1. Database configuration
    >* please adjust the db connection to match your local DB configuration. You can do this by replacing the database property values which can be found in `hrms-api/hrms-rest-api/src/main/resources/application.properties` file.
 1. How to run tests
