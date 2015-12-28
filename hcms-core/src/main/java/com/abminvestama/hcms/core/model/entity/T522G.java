@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 /**
@@ -19,7 +18,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "t522g")
-@IdClass(T522GKey.class)
 public class T522G implements Serializable {
 
 	private static final long serialVersionUID = 4427132800445742190L;
@@ -28,11 +26,9 @@ public class T522G implements Serializable {
 	@Column(name = "anred", nullable = false, length = 1)
 	private String anred;
 	
-	@Id
 	@Column(name = "gesch", nullable = false, length = 1)
 	private String gesch;
 	
-	@Id
 	@Column(name = "atext", nullable = false, length = 5)
 	private String atext;
 	

@@ -21,12 +21,16 @@ public class UserResponseWrapper extends ResourceSupport {
 	private String uuid;
 	private String username;
 	private String emailAddress;
+	private Long pernr;
+	private String fullname;
 	private Role[] roles;
 	
 	public UserResponseWrapper(User user) {
 		this.uuid = user.getId();
 		this.username = user.getUsername();
 		this.emailAddress = user.getEmail();
+		this.pernr = user.getEmployee().getPernr();
+		this.fullname = user.getEmployee().getCname();
 		this.roles = user.getRoles().toArray(new Role[user.getRoles().size()]);
 	}
 	
@@ -43,6 +47,16 @@ public class UserResponseWrapper extends ResourceSupport {
 	@JsonProperty("email_address")
 	public String getEmailAddress() {
 		return emailAddress;
+	}
+	
+	@JsonProperty("pernr")
+	public Long getPernr() {
+		return pernr;
+	}
+	
+	@JsonProperty("fullname")
+	public String getFullname() {
+		return fullname;
 	}
 	
 	@JsonProperty("roles")

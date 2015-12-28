@@ -10,8 +10,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -62,6 +64,14 @@ public class User extends AbstractEntity implements UserDetails {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "user_auth_token_valid_thru")
 	private Date authTokenValidThru;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumns({
+		@JoinColumn(name = "pernr", referencedColumnName = "pernr"),
+		@JoinColumn(name = "endda", referencedColumnName = "endda"),
+		@JoinColumn(name = "begda", referencedColumnName = "begda")
+	})
+	private IT0002 employee;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
@@ -165,6 +175,15 @@ public class User extends AbstractEntity implements UserDetails {
 	
 	public void setAuthTokenValidThru(Date authTokenValidThru) {
 		this.authTokenValidThru = authTokenValidThru;
+	}
+	
+	/**
+	 * GET Employee Information.
+	 * 
+	 * @return
+	 */
+	public IT0002 getEmployee() {
+		return employee;
 	}
 	
 	public Set<Role> getRoles() {
