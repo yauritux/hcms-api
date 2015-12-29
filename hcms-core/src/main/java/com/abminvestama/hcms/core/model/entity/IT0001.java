@@ -55,7 +55,7 @@ public class IT0001 implements Serializable {
 	@Column(name = "uname", length = 100, nullable = false)
 	private String uname;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumns({
 		@JoinColumn(name = "werks", referencedColumnName = "persa"),
 		@JoinColumn(name = "bukrs", referencedColumnName = "bukrs")

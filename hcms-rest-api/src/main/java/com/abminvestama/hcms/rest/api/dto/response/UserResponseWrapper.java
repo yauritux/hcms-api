@@ -29,6 +29,8 @@ public class UserResponseWrapper extends ResourceSupport {
 	private String photoLink;
 	private String employeeStartDate;
 	private String employeePosition;
+	private String companyName;
+	private String companyLocation;
 	private Role[] roles;
 	
 	public UserResponseWrapper(User user) {
@@ -45,6 +47,8 @@ public class UserResponseWrapper extends ResourceSupport {
 				).append(" ").append(dateOfJoined.get(Calendar.DAY_OF_MONTH))
 				.append(", ").append(dateOfJoined.get(Calendar.YEAR)).toString();
 		this.employeePosition = user.getEmployee().getT528t().getPlstx();
+		this.companyName = user.getEmployee().getT500p().getBukrs().getButxt();
+		this.companyLocation = user.getEmployee().getV001pall().getBtext();
 		this.roles = user.getRoles().toArray(new Role[user.getRoles().size()]);
 	}
 	
@@ -86,6 +90,16 @@ public class UserResponseWrapper extends ResourceSupport {
 	@JsonProperty("employee_position")
 	public String getEmployeePosition() {
 		return employeePosition;
+	}
+	
+	@JsonProperty("company_name")
+	public String getCompanyName() {
+		return companyName;
+	}
+	
+	@JsonProperty("company_location")
+	public String getCompanyLocation() {
+		return companyLocation;
 	}
 	
 	@JsonProperty("roles")
