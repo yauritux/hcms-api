@@ -1,7 +1,10 @@
 package com.abminvestama.hcms.rest.api.dto.response;
 
+import java.util.Calendar;
+
 import org.springframework.hateoas.ResourceSupport;
 
+import com.abminvestama.hcms.common.util.CommonDateFunction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -20,19 +23,29 @@ public class APIResponseWrapper<T> extends ResourceSupport {
 	private T data;
 	private String message;
 	private Page page;
+	private String serverDate;
 	
-	public APIResponseWrapper() {}
+	public APIResponseWrapper() {
+		Calendar cal = Calendar.getInstance();
+		serverDate = new StringBuilder(
+				CommonDateFunction.getMonthFullName(cal.get(Calendar.MONTH)))
+						.append(" ").append(cal.get(Calendar.DAY_OF_MONTH))
+						.append(", ").append(cal.get(Calendar.YEAR)).toString();
+	}
 	
 	public APIResponseWrapper(T data) {
+		this();
 		this.data = data;
 	}
 	
 	public APIResponseWrapper(T data, Page page) {
+		this();
 		this.data = data;
 		this.page = page;
 	}
 	
 	public APIResponseWrapper(String message) {
+		this();
 		this.message = message;
 	}
 	
@@ -63,5 +76,10 @@ public class APIResponseWrapper<T> extends ResourceSupport {
 	
 	public void setPage(Page page) {
 		this.page = page;
+	}
+	
+	@JsonProperty("server_date")
+	public String getServerDate() {
+		return serverDate;
 	}
 }

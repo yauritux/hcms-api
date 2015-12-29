@@ -71,7 +71,7 @@ public class User extends AbstractEntity implements UserDetails {
 		@JoinColumn(name = "endda", referencedColumnName = "endda"),
 		@JoinColumn(name = "begda", referencedColumnName = "begda")
 	})
-	private IT0002 employee;
+	private IT0001 employee;
 	
 	@Column(name = "photo_link", nullable = true)
 	private String photoLink;
@@ -185,7 +185,7 @@ public class User extends AbstractEntity implements UserDetails {
 	 * 
 	 * @return
 	 */
-	public IT0002 getEmployee() {
+	public IT0001 getEmployee() {
 		return employee;
 	}
 	

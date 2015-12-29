@@ -40,8 +40,8 @@ public class T528T implements Serializable {
 	@Column(name = "begda")
 	private Date begda;
 	
-	@Column(name = "psltx", nullable = false, length = 150)
-	private String psltx;
+	@Column(name = "plstx", nullable = false, length = 150)
+	private String plstx;
 	
 	/**
 	 * Get Position Code
@@ -71,11 +71,11 @@ public class T528T implements Serializable {
 	 * Get Position Short Text
 	 * @return
 	 */
-	public String getPsltx() {
-		return psltx;
+	public String getPlstx() {
+		return plstx;
 	}
 	
-	public void setPsltx(String psltx) {
-		this.psltx = psltx;
+	public void setPlstx(String plstx) {
+		this.plstx = plstx;
 	}
 }

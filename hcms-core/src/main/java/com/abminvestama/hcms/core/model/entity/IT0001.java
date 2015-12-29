@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -100,7 +101,7 @@ public class IT0001 implements Serializable {
 	})
 	private T527X t527x;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumns({
 		@JoinColumn(name = "plans", referencedColumnName = "plans"),
 		@JoinColumn(name = "endda_emposition", referencedColumnName = "endda")
