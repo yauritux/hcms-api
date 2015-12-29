@@ -1,15 +1,12 @@
 package com.abminvestama.hcms.core.model.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * 
@@ -35,11 +32,6 @@ public class CSKT implements Serializable {
 	@Column(name = "kostl", length = 10, nullable = false)
 	private String kostl;
 	
-	@Id
-	@Temporal(TemporalType.DATE)
-	@Column(name = "datbi", nullable = false)
-	private Date datbi;
-	
 	@Column(name = "ktext", length = 150, nullable = false)
 	private String ktext;
 	
@@ -63,14 +55,6 @@ public class CSKT implements Serializable {
 	 */
 	public String getKostl() {
 		return kostl;
-	}
-	
-	/**
-	 * Get validity 
-	 * @return date of validity
-	 */
-	public Date getDatbi() {
-		return datbi;
 	}
 	
 	/**

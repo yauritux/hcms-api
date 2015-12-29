@@ -23,6 +23,7 @@ public class UserResponseWrapper extends ResourceSupport {
 	private String emailAddress;
 	private Long pernr;
 	private String fullname;
+	private String photoLink;
 	private Role[] roles;
 	
 	public UserResponseWrapper(User user) {
@@ -31,6 +32,7 @@ public class UserResponseWrapper extends ResourceSupport {
 		this.emailAddress = user.getEmail();
 		this.pernr = user.getEmployee().getPernr();
 		this.fullname = user.getEmployee().getCname();
+		this.photoLink = user.getPhotoLink();
 		this.roles = user.getRoles().toArray(new Role[user.getRoles().size()]);
 	}
 	
@@ -57,6 +59,11 @@ public class UserResponseWrapper extends ResourceSupport {
 	@JsonProperty("fullname")
 	public String getFullname() {
 		return fullname;
+	}
+	
+	@JsonProperty("photo_link")
+	public String getPhotoLink() {
+		return photoLink;
 	}
 	
 	@JsonProperty("roles")

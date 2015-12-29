@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
  * @author yauri (yauritux@gmail.com)
  * @version 1.0.0
  * @since 1.0.0
+ * 
+ * Class that represents master data for <strong>Job Key</strong>.
  *
  */
 @Entity

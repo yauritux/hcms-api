@@ -1,7 +1,6 @@
 package com.abminvestama.hcms.core.model.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 
@@ -18,15 +17,12 @@ public class CSKTKey implements Serializable {
 
 	private String kostl;
 
-	private Date datbi;
-
 	public CSKTKey() {
 	}
 
-	public CSKTKey(String kokrs, String kostl, Date datbi) {
+	public CSKTKey(String kokrs, String kostl) {
 		this.kokrs = kokrs;
 		this.kostl = kostl;
-		this.datbi = datbi;
 	}
 
 	public String getKokrs() {
@@ -35,10 +31,6 @@ public class CSKTKey implements Serializable {
 
 	public String getKostl() {
 		return kostl;
-	}
-
-	public Date getDatbi() {
-		return datbi;
 	}
 
 	@Override
@@ -60,10 +52,6 @@ public class CSKTKey implements Serializable {
 			return false;
 		}
 
-		if (datbi != null ? (datbi.compareTo(key.getDatbi()) != 0) : key.datbi != null) {
-			return false;
-		}
-
 		return true;
 	}
 
@@ -71,7 +59,6 @@ public class CSKTKey implements Serializable {
 	public int hashCode() {
 		int result = kokrs != null ? kokrs.hashCode() : 0;
 		result = result * 31 + (kostl != null ? kostl.hashCode() : 0);
-		result = result * 31 + (datbi != null ? datbi.hashCode() : 0);
 		return result;
 	}
 }

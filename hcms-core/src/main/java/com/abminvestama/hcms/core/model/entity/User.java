@@ -73,6 +73,9 @@ public class User extends AbstractEntity implements UserDetails {
 	})
 	private IT0002 employee;
 	
+	@Column(name = "photo_link", nullable = true)
+	private String photoLink;
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "user_roles",
@@ -184,6 +187,10 @@ public class User extends AbstractEntity implements UserDetails {
 	 */
 	public IT0002 getEmployee() {
 		return employee;
+	}
+	
+	public String getPhotoLink() {
+		return photoLink;
 	}
 	
 	public Set<Role> getRoles() {

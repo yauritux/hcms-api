@@ -27,7 +27,7 @@ public class T500P implements Serializable {
 	private static final long serialVersionUID = 9183005617272108480L;
 	
 	@Id
-	//@JoinColumn(name = "persa", referencedColumnName = "persa", insertable = false, updatable = false, nullable = false)
+	@Column(name = "persa", length = 10)
 	private String persa;
 	
 	@Id
