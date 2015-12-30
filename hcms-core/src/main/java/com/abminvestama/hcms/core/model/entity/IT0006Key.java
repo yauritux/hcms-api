@@ -3,6 +3,8 @@ package com.abminvestama.hcms.core.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Embeddable;
+
 /**
  * 
  * @author yauri (yauritux@gmail.com)
@@ -10,18 +12,19 @@ import java.util.Date;
  * @since 1.0.0
  *
  */
+@Embeddable
 public class IT0006Key implements Serializable {
 
 	private static final long serialVersionUID = -5819728140953219565L;
 
 	private Long pernr;
-	private String subty;
+	private T591S subty;
 	private Date endda;
 	private Date begda;
 	
 	public IT0006Key() {}
 	
-	public IT0006Key(Long pernr, String subty, Date endda, Date begda) {
+	public IT0006Key(Long pernr, T591S subty, Date endda, Date begda) {
 		this.pernr = pernr;
 		this.subty = subty;
 		this.endda = endda;
@@ -42,7 +45,7 @@ public class IT0006Key implements Serializable {
 	 * 
 	 * @return
 	 */
-	public String getSubty() {
+	public T591S getSubty() {
 		return subty;
 	}
 	

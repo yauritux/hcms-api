@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -23,11 +22,14 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "it0006")
-@IdClass(IT0006Key.class)
+//@IdClass(IT0006Key.class)
 public class IT0006 implements Serializable {
 
 	private static final long serialVersionUID = -589157851250104698L;
 
+	@EmbeddedId
+	private IT0006Key id;
+	/*
 	@Id
 	@Column(name = "pernr", nullable = false)
 	private Long pernr;
@@ -46,6 +48,14 @@ public class IT0006 implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "begda", nullable = false)
 	private Date begda;
+	*/
+	
+	public IT0006() {}
+	
+	public IT0006(IT0006Key id) {
+		this();
+		this.id = id;
+	}
 	
 	@Column(name = "seqnr")
 	private Long seqnr;
@@ -106,36 +116,44 @@ public class IT0006 implements Serializable {
 	 * 
 	 * @return
 	 */
+	/*
 	public Long getPernr() {
 		return pernr;
 	}
+	*/
 	
 	/**
 	 * GET Address Type.
 	 * 
 	 * @return
 	 */
+	/*
 	public T591S getSubty() {
 		return subty;
 	}
+	*/
 	
 	/**
 	 * GET End Date.
 	 * 
 	 * @return
 	 */
+	/*
 	public Date getEndda() {
 		return endda;
 	}
+	*/
 	
 	/**
 	 * GET Begin Date.
 	 * 
 	 * @return
 	 */
+	/*
 	public Date getBegda() {
 		return begda;
 	}
+	*/
 	
 	/**
 	 * GET Infotype Record No.

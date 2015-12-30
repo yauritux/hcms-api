@@ -46,4 +46,34 @@ public class T591S implements Serializable {
 	public String getStext() {
 		return stext;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+		
+		if (o == null || o.getClass() != this.getClass()) {
+			return false;
+		}
+		
+		final T591S obj = (T591S) o;
+		
+		if (obj.getSubty() != null ? !obj.getSubty().equals(this.getSubty()) : this.getSubty() != null) {
+			return false;
+		}
+		
+		if (obj.getStext() != null ? !obj.getStext().equals(this.getStext()) : this.getStext() != null) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = this.getSubty() != null ? this.getSubty().hashCode() : 0;
+		result = result * 31 + (this.getStext() != null ? this.getStext().hashCode() : 0);
+		return result;
+	}
 }
