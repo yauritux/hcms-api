@@ -50,6 +50,9 @@ public class IT0006 implements Serializable {
 	private Date begda;
 	*/
 	
+	@Column(name = "pernr", nullable = false, insertable = false, updatable = false)
+	private Long pernr;
+	
 	public IT0006() {}
 	
 	public IT0006(IT0006Key id) {
