@@ -1,0 +1,1 @@
+ALTER TABLE T591S ADD PRIMARY KEY (subty, stext);
