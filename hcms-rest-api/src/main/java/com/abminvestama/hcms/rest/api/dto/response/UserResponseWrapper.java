@@ -31,6 +31,14 @@ public class UserResponseWrapper extends ResourceSupport {
 	private String employeePosition;
 	private String companyName;
 	private String companyLocation;
+	private String workArea;
+	private String workSubArea;
+	private String organizationalUnit;
+	private String position;
+	private String job;
+	private String empGroup;
+	private String empSubGroup;
+	private String payrollArea;
 	private Role[] roles;
 	
 	public UserResponseWrapper(User user) {
@@ -49,6 +57,14 @@ public class UserResponseWrapper extends ResourceSupport {
 		this.employeePosition = user.getEmployee().getT528t().getPlstx();
 		this.companyName = user.getEmployee().getT500p().getBukrs().getButxt();
 		this.companyLocation = user.getEmployee().getV001pall().getBtext();
+		this.workArea = user.getEmployee().getT500p().getPbtxt();
+		this.workSubArea = user.getEmployee().getV001pall().getBtext();
+		this.organizationalUnit = user.getEmployee().getT527x().getOrgtx();
+		this.position = user.getEmployee().getT528t().getPlstx();
+		this.job = user.getEmployee().getT513s().getStltx();
+		this.empGroup = user.getEmployee().getT501t().getPgtxt();
+		this.empSubGroup = user.getEmployee().getT503k().getPersk();
+		this.payrollArea = user.getEmployee().getT549t().getAbktx();
 		this.roles = user.getRoles().toArray(new Role[user.getRoles().size()]);
 	}
 	
@@ -100,6 +116,46 @@ public class UserResponseWrapper extends ResourceSupport {
 	@JsonProperty("company_location")
 	public String getCompanyLocation() {
 		return companyLocation;
+	}
+	
+	@JsonProperty("work_area")
+	public String getWorkArea() {
+		return workArea;
+	}
+	
+	@JsonProperty("work_sub_area")
+	public String getWorkSubArea() {
+		return workSubArea;
+	}
+	
+	@JsonProperty("org_unit")
+	public String getOrganizationalUnit() {
+		return organizationalUnit;
+	}
+	
+	@JsonProperty("position")
+	public String getPosition() {
+		return position;
+	}
+	
+	@JsonProperty("job")
+	public String getJob() {
+		return job;
+	}
+	
+	@JsonProperty("emp_group")
+	public String getEmpGroup() {
+		return empGroup;
+	}
+	
+	@JsonProperty("emp_sub_group")
+	public String getEmpSubGroup() {
+		return empSubGroup;
+	}
+	
+	@JsonProperty("payroll_area")
+	public String getPayrollArea() {
+		return payrollArea;
 	}
 	
 	@JsonProperty("roles")
