@@ -32,7 +32,7 @@ import com.abminvestama.hcms.rest.api.dto.response.UserResponseWrapper;
  *
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class UserController extends AbstractResource {
 

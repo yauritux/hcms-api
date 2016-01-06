@@ -38,7 +38,7 @@ import com.abminvestama.hcms.rest.api.dto.response.SessionResponseWrapper;
  *
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/session")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class SessionController extends AbstractResource {
 

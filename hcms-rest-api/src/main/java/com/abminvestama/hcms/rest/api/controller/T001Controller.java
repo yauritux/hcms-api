@@ -29,7 +29,7 @@ import com.abminvestama.hcms.rest.api.dto.response.APIResponseWrapper;
  *
  */
 @RestController
-@RequestMapping("/api/t001")
+@RequestMapping("/api/v1/company")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class T001Controller extends AbstractResource {
 

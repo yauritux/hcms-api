@@ -16,7 +16,7 @@ import com.abminvestama.hcms.core.service.api.business.query.IT0006QueryService;
  *
  */
 @RestController
-@RequestMapping("/api/it0006")
+@RequestMapping("/api/v1/address")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 public class IT0006Controller extends AbstractResource {
 
