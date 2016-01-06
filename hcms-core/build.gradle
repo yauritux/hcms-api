@@ -21,6 +21,7 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-jdbc:$project.ext.springBootVersion")
 	compile("org.springframework.boot:spring-boot-starter-security:$project.ext.springBootVersion")
 	compile("postgresql:postgresql:9.1-901.jdbc4")
+	testCompile("nl.jqno.equalsverifier:equalsverifier:1.7.6")
 	compile project(':hcms-common')
 }
 

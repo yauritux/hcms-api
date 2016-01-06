@@ -3,6 +3,8 @@ package com.abminvestama.hcms.core.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.annotations.Immutable;
+
 /**
  * 
  * @author yauri (yauritux@gmail.com)
@@ -10,6 +12,7 @@ import java.util.Date;
  * @since 1.0.0
  *
  */
+@Immutable
 public class T513SKey implements Serializable {
 
 	private static final long serialVersionUID = 5030687043714777922L;
@@ -44,11 +47,11 @@ public class T513SKey implements Serializable {
 		
 		final T513SKey key = (T513SKey) o;
 		
-		if (stell != null ? stell != key.getStell() : key.getStell() != null) {
+		if (stell != null ? (stell.longValue() != (key.getStell() != null ? key.getStell() : 0)) : key.getStell() != null) {
 			return false;
 		}
 		
-		if (endda != null ? (endda.compareTo(key.getEndda()) != 0) : key.getEndda() != null) {
+		if (endda != null ? (endda.compareTo(key.getEndda() != null ? key.getEndda() : new Date()) != 0) : key.getEndda() != null) {
 			return false;
 		}
 		

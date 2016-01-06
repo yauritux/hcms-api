@@ -2,6 +2,8 @@ package com.abminvestama.hcms.core.model.entity;
 
 import java.io.Serializable;
 
+import org.hibernate.annotations.Immutable;
+
 /**
  * 
  * @author yauri (yauritux@gmail.com)
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @since 1.0.0
  *
  */
+@Immutable
 public class T500PKey implements Serializable {
 
 	private static final long serialVersionUID = 6661653037461899358L;

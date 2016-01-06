@@ -3,6 +3,8 @@ package com.abminvestama.hcms.core.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.hibernate.annotations.Immutable;
+
 /**
  * 
  * @author yauri (yauritux@gmail.com)
@@ -10,6 +12,7 @@ import java.util.Date;
  * @since 1.0.0
  *
  */
+@Immutable
 public class IT0002Key implements Serializable {
 
 	private static final long serialVersionUID = 2330384288628528930L;
@@ -52,15 +55,15 @@ public class IT0002Key implements Serializable {
 		
 		final IT0002Key key = (IT0002Key) o;
 		
-		if (key.getPernr() != null ? key.getPernr().longValue() != this.getPernr().longValue() : this.getPernr() != null) {
+		if (key.getPernr() != null ? (key.getPernr().longValue() != (pernr != null ? pernr.longValue() : 0)) : pernr != null) {
 			return false;
 		}
 		
-		if (key.getEndda() != null ? key.getEndda().compareTo(this.getEndda()) != 0 : this.getEndda() != null) {
+		if (key.getEndda() != null ? key.getEndda().compareTo(endda != null ? endda : new Date()) != 0 : endda != null) {
 			return false;
 		}
 		
-		if (key.getBegda() != null ? key.getBegda().compareTo(this.getBegda()) != 0 : this.getBegda() != null) {
+		if (key.getBegda() != null ? key.getBegda().compareTo(begda != null ? begda : new Date()) != 0 : begda != null) {
 			return false;
 		}
 		

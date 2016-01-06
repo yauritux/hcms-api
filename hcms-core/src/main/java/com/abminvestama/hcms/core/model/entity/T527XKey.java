@@ -3,6 +3,8 @@ package com.abminvestama.hcms.core.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
 /**
  * 
  * @author yauri (yauritux@gmail.com)
@@ -10,6 +12,7 @@ import java.util.Date;
  * @since 1.0.0
  *
  */
+@Immutable
 public class T527XKey implements Serializable {
 
 	private static final long serialVersionUID = -5693586394834010362L;
@@ -45,11 +48,11 @@ public class T527XKey implements Serializable {
 		
 		final T527XKey key = (T527XKey) o;
 		
-		if (key.getOrgeh() != null ? key.getOrgeh().longValue() != this.getOrgeh().longValue() : this.getOrgeh() != null) {
+		if (key.getOrgeh() != null ? (key.getOrgeh().longValue() != (orgeh != null ? orgeh.longValue() : 0)) : orgeh != null) {
 			return false;
 		}
 		
-		if (key.getEndda() != null ? key.getEndda().compareTo(this.getEndda()) != 0 : this.getEndda() != null) {
+		if (key.getEndda() != null ? key.getEndda().compareTo(endda != null ? endda : new Date()) != 0 : endda != null) {
 			return false;
 		}
 		
