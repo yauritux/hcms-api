@@ -11,6 +11,7 @@ public enum HCMSResourceIdentifier {
 
 	USER_SESSION("user_session"),
 	USER("user"),
+	ROLE("role"),
 	T001("t001"),
 	SELF("self");
 	

@@ -1,10 +1,13 @@
 package com.abminvestama.hcms.rest.api.dto.response;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.hateoas.ResourceSupport;
 
 import com.abminvestama.hcms.common.util.CommonDateFunction;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -16,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * All responses from the REST APIs should be wrapped within this particular class.
  *
  */
+@JsonInclude(Include.NON_NULL)
 public class APIResponseWrapper<T> extends ResourceSupport {
 
 	private static final String apiVersion = "1.0.0";
@@ -24,6 +28,7 @@ public class APIResponseWrapper<T> extends ResourceSupport {
 	private String message;
 	private Page page;
 	private String serverDate;
+	private Date timestamp = new Date();
 	
 	public APIResponseWrapper() {
 		Calendar cal = Calendar.getInstance();
@@ -46,6 +51,19 @@ public class APIResponseWrapper<T> extends ResourceSupport {
 	
 	public APIResponseWrapper(String message) {
 		this();
+		this.message = message;
+	}
+	
+	public APIResponseWrapper(T data, String message) {
+		this();
+		this.data = data;
+		this.message = message;
+	}
+	
+	public APIResponseWrapper(T data, Page page, String message) {
+		this();
+		this.data = data;
+		this.page = page;
 		this.message = message;
 	}
 	
@@ -81,5 +99,10 @@ public class APIResponseWrapper<T> extends ResourceSupport {
 	@JsonProperty("server_date")
 	public String getServerDate() {
 		return serverDate;
+	}
+	
+	@JsonProperty("timestamp")
+	public Date getTimestamp() {
+		return timestamp;
 	}
 }

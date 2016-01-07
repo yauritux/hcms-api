@@ -3,6 +3,8 @@ package com.abminvestama.hcms.rest.api.dto.response;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.abminvestama.hcms.rest.api.model.constant.HCMSResourceIdentifier;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -12,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @since 1.0.0
  *
  */
+@JsonInclude(Include.NON_NULL)
 public class T001ResponseWrapper extends ResourceSupport {
 
 	public static final String RESOURCE = HCMSResourceIdentifier.T001.label();

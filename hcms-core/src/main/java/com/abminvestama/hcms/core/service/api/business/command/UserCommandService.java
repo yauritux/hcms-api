@@ -14,5 +14,4 @@ import com.abminvestama.hcms.core.service.api.DatabaseCommandService;
  *
  */
 public interface UserCommandService extends DatabaseCommandService<User> {
-
 }
