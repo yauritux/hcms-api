@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.transaction.annotation.Propagation;
@@ -88,7 +89,8 @@ public class UserController extends AbstractResource {
 		if (result.hasErrors()) {
 		      if (result.hasErrors()) {
                   return new APIResponseWrapper<>(new ArrayData<>(
-                                  ExceptionResponseWrapper.getErrors(result.getFieldErrors())), "Validation error!");
+                                  ExceptionResponseWrapper.getErrors(
+                                		  result.getFieldErrors(), HttpMethod.PUT)), "Validation error!");
           }
 		}
 		

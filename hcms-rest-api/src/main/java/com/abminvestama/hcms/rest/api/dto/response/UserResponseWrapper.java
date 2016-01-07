@@ -1,15 +1,12 @@
 package com.abminvestama.hcms.rest.api.dto.response;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.abminvestama.hcms.common.util.CommonDateFunction;
-import com.abminvestama.hcms.core.model.entity.Role;
 import com.abminvestama.hcms.core.model.entity.User;
 import com.abminvestama.hcms.rest.api.model.constant.HCMSResourceIdentifier;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -74,30 +71,10 @@ public class UserResponseWrapper extends ResourceSupport {
 		this.empGroup = user.getEmployee().getT501t().getPgtxt();
 		this.empSubGroup = user.getEmployee().getT503k().getPersk();
 		this.payrollArea = user.getEmployee().getT549t().getAbktx();
-		final List<RoleResponseWrapper> roleResponseWrapperList = new ArrayList<>();
-		user.getRoles().stream().collect(Collectors.groupingBy(Role::getName)).values().stream().forEach(roleList -> {
-			for (Role role : roleList) {
-				roleResponseWrapperList.add(new RoleResponseWrapper(role));
-			}
-		});
-		this.roles = roleResponseWrapperList.toArray(new RoleResponseWrapper[roleResponseWrapperList.size()]);
-		/*
-		String[] roleNames = user.getRoles().stream().collect(
-				Collectors.groupingBy(Role::getName))
-			.values().toArray(new String[user.getRoles().size()]);
-		//this.roles = new RoleResponseWrapper[roleNames.length];
-		Function<String[], RoleResponseWrapper[]> rolesResponseConversion = new Function<String[], RoleResponseWrapper[]> () {
-			public RoleResponseWrapper[] apply(String[] roleNames) {
-				List<RoleResponseWrapper> roleResponseWrapperList = new ArrayList<>();
-				for (String name : roleNames) {
-					roleResponseWrapperList.add(new RoleResponseWrapper(new Role(name, false)));
-				}
-				return roleResponseWrapperList.toArray(new RoleResponseWrapper[roleNames.length]);
-			}
-		};
-		this.roles = rolesResponseConversion.apply(roleNames);
-		*/
-		//this.roles = user.getRoles().toArray(new Role[user.getRoles().size()]);
+		
+		this.roles = user.getRoles().stream().collect(Collectors.toList()).stream().map(role -> {
+			return new RoleResponseWrapper(role);
+		}).collect(Collectors.toList()).toArray(new RoleResponseWrapper[user.getRoles().size()]);
 	}
 	
 	@JsonProperty("system-id")

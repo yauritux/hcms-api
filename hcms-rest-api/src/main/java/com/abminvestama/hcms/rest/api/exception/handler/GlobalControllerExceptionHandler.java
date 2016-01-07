@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,7 +36,7 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
 	public ModelAndView usernameNotFoundExceptionHandler(HttpServletRequest req, UsernameNotFoundException e) {
 		LOG.error("Username not found", e);
 		ExceptionResponseWrapper response = new ExceptionResponseWrapper("Username not found: " + e.getMessage(),
-				HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+				HttpStatus.NON_AUTHORITATIVE_INFORMATION, HttpMethod.valueOf(req.getMethod()));
 		return generateViewResolver(req, new ExceptionViewResolver(response));
 	}
 	
@@ -44,7 +45,7 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
 	public ModelAndView authenticationExceptionHandler(HttpServletRequest req, AuthenticationException e) {
 		LOG.error("Authentication failed", e);
 		ExceptionResponseWrapper response = new ExceptionResponseWrapper("Authentication failed. Either missing or invalid token.",
-				HttpStatus.UNAUTHORIZED);
+				HttpStatus.UNAUTHORIZED, HttpMethod.valueOf(req.getMethod()));
 		return generateViewResolver(req, new ExceptionViewResolver(response));
 	}
 	
@@ -53,13 +54,14 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
 	public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) {
 		LOG.error("Internal Server Error", e);
 		ExceptionResponseWrapper response = new ExceptionResponseWrapper("Internal Server Error: " + e.getMessage(),
-				HttpStatus.INTERNAL_SERVER_ERROR);
+				HttpStatus.INTERNAL_SERVER_ERROR, HttpMethod.valueOf(req.getMethod()));
 		return generateViewResolver(req, new ExceptionViewResolver(response));
 	}
 	
 	private ModelAndView generateViewResolver(HttpServletRequest req, ExceptionViewResolver exceptionViewResolver) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("url", req.getRequestURL());
+		mv.addObject("method", exceptionViewResolver.getExceptionResponse().getHttpMethod().name());
 		mv.addObject("status", exceptionViewResolver.getExceptionResponse().getHttpStatus().value());
 		mv.addObject("message", exceptionViewResolver.getExceptionResponse().getMessage());
 		mv.addObject("error", exceptionViewResolver.getExceptionResponse().getHttpStatus().name());
