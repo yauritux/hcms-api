@@ -12,6 +12,8 @@ import org.hibernate.annotations.Immutable;
  * @author yauri (yauritux@gmail.com)
  * @version 1.0.0
  * @since 1.0.0
+ * 
+ * Composite keys for IT0006 object.
  *
  */
 @Embeddable
@@ -21,13 +23,13 @@ public class IT0006Key implements Serializable {
 	private static final long serialVersionUID = -5819728140953219565L;
 
 	private Long pernr;
-	private T591S subty;
+	private String subty;
 	private Date endda;
 	private Date begda;
 	
 	public IT0006Key() {}
 	
-	public IT0006Key(Long pernr, T591S subty, Date endda, Date begda) {
+	public IT0006Key(Long pernr, String subty, Date endda, Date begda) {
 		this.pernr = pernr;
 		this.subty = subty;
 		this.endda = endda;
@@ -48,7 +50,7 @@ public class IT0006Key implements Serializable {
 	 * 
 	 * @return
 	 */
-	public T591S getSubty() {
+	public String getSubty() {
 		return subty;
 	}
 	
@@ -86,7 +88,7 @@ public class IT0006Key implements Serializable {
 			return false;
 		}
 		
-		if (key.getSubty() != null ? !key.getSubty().equals(this.getSubty()) : this.getSubty() != null) {
+		if (key.getSubty() != null ? !key.getSubty().equalsIgnoreCase(this.getSubty()) : this.getSubty() != null) {
 			return false;
 		}
 		

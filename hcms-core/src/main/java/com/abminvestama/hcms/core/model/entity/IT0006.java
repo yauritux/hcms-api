@@ -53,6 +53,14 @@ public class IT0006 implements Serializable {
 	@Column(name = "pernr", nullable = false, insertable = false, updatable = false)
 	private Long pernr;
 	
+	@ManyToOne
+	@JoinColumn(name = "subty", referencedColumnName = "subty", insertable = false, updatable = false)
+	private T591S subty;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "endda", nullable = false, insertable = false, updatable = false)
+	private Date endda;
+	
 	public IT0006() {}
 	
 	public IT0006(IT0006Key id) {
@@ -165,6 +173,15 @@ public class IT0006 implements Serializable {
 	 */
 	public Long getSeqnr() {
 		return seqnr;
+	}
+	
+	/**
+	 * GET Address Subtype.
+	 * 
+	 * @return
+	 */
+	public T591S getSubty() {
+		return subty;
 	}
 	
 	/**

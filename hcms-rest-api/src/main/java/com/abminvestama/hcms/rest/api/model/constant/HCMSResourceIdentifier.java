@@ -12,7 +12,8 @@ public enum HCMSResourceIdentifier {
 	USER_SESSION("user_session"),
 	USER("user"),
 	ROLE("role"),
-	T001("t001"),
+	T001("organizational_assignment"),
+	IT0006("addresses"),
 	SELF("self");
 	
 	private String label;

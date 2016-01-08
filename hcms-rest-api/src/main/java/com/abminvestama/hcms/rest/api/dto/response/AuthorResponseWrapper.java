@@ -35,7 +35,7 @@ public class AuthorResponseWrapper extends ResourceSupport {
 		this.add(link);
 	}
 	
-	@JsonProperty("user_name")
+	@JsonProperty("username")
 	public String getUsername() {
 		return username;
 	}

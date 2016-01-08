@@ -5,9 +5,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,13 +68,26 @@ public class IT0006QueryServiceImpl implements IT0006QueryService {
 		Optional<Collection<IT0006>> bunchOfIT0006 
 			= Optional.ofNullable(it0006Repository.findByPernr(pernr));
 		
-		List<IT0006> listOfIT0006 = new ArrayList<>();
-		return 
-			bunchOfIT0006.map(it0006Collection -> {
-				it0006Collection.forEach(it0006 -> {
-					listOfIT0006.add(it0006);
-				});
-				return listOfIT0006;
-			}).orElse(Collections.emptyList());
+		return (bunchOfIT0006.isPresent()
+				? bunchOfIT0006.get().stream().collect(Collectors.toList())
+				: Collections.emptyList());		
+	}
+
+	@Override
+	public Collection<IT0006> findByPernrAndSubty(Long pernr, String subty) {
+		if (pernr == null) {
+			return Collections.emptyList();
+		}
+		
+		if (StringUtils.isBlank(subty)) {
+			subty = "1"; // default to subtype '1' (i.e. Permanent Residence)
+		}
+		
+		Optional<Collection<IT0006>> bunchOfIT0006 
+			= Optional.ofNullable(it0006Repository.findByPernrAndSubty(pernr, subty));
+
+		return (bunchOfIT0006.isPresent() 
+					? bunchOfIT0006.get().stream().collect(Collectors.toList())
+					: Collections.emptyList());
 	}
 }

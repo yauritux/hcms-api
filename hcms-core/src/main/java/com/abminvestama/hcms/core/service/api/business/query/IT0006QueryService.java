@@ -20,4 +20,7 @@ public interface IT0006QueryService extends DatabaseQueryService<IT0006, IT0006K
 
 	@NotNull
 	Collection<IT0006> findByPernr(Long pernr);
+	
+	@NotNull
+	Collection<IT0006> findByPernrAndSubty(Long pernr, String subty);
 }
