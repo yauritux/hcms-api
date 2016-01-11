@@ -3,6 +3,7 @@ package com.abminvestama.hcms.core.service.impl.business.query;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,12 +37,19 @@ public class IT0006QueryServiceImpl implements IT0006QueryService {
 	IT0006QueryServiceImpl(IT0006Repository it0006Repository) {
 		this.it0006Repository = it0006Repository;
 	}
-
+	
 	@Override
-	public Optional<IT0006> findById(Optional<IT0006Key> id) {
-		return id.map(pk -> {
-			return it0006Repository.findOne(pk);
-		});
+	public Optional<IT0006> findOneByCompositeKey(Long pernr, String subty, Date endda, Date begda) {
+		if (pernr == null || StringUtils.isBlank(subty) || endda == null || begda == null) {
+			return Optional.empty(); 
+		}
+		
+		return Optional.ofNullable(it0006Repository.findOneByCompositeKey(pernr, subty.trim(), endda, begda));
+	}
+	
+	@Override
+	public Optional<IT0006> findById(Optional<IT0006Key> id) throws Exception {
+		throw new NoSuchMethodException("Method not implemented. Please use method findOneByCompositeKeys instead.");
 	}
 
 	@Override

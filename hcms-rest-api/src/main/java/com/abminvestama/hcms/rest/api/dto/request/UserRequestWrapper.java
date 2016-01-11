@@ -28,7 +28,7 @@ public class UserRequestWrapper {
 		this.email = email;
 	}
 	
-	@JsonProperty("user_name")
+	@JsonProperty("username")
 	public String getUsername() {
 		return username;
 	}

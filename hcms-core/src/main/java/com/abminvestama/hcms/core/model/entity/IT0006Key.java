@@ -3,7 +3,10 @@ package com.abminvestama.hcms.core.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Immutable;
 
@@ -24,7 +27,13 @@ public class IT0006Key implements Serializable {
 
 	private Long pernr;
 	private String subty;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "endda", nullable = false, insertable = false, updatable = false)	
 	private Date endda;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "begda", nullable = false, insertable = false, updatable = false)	
 	private Date begda;
 	
 	public IT0006Key() {}

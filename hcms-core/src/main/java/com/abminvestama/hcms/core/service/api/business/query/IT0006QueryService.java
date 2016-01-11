@@ -1,6 +1,8 @@
 package com.abminvestama.hcms.core.service.api.business.query;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.Optional;
 
 import javax.validation.constraints.NotNull;
 
@@ -18,6 +20,9 @@ import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
  */
 public interface IT0006QueryService extends DatabaseQueryService<IT0006, IT0006Key>, DatabasePaginationQueryService {
 
+	@NotNull
+	Optional<IT0006> findOneByCompositeKey(Long pernr, String subty, Date endda, Date begda);
+	
 	@NotNull
 	Collection<IT0006> findByPernr(Long pernr);
 	

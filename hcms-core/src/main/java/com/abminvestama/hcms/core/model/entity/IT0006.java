@@ -1,16 +1,10 @@
 package com.abminvestama.hcms.core.model.entity;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * 
@@ -22,44 +16,16 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "it0006")
-//@IdClass(IT0006Key.class)
-public class IT0006 implements Serializable {
+public class IT0006 extends SAPAbstractEntity<IT0006Key> {
 
 	private static final long serialVersionUID = -589157851250104698L;
 
-	@EmbeddedId
-	private IT0006Key id;
-	/*
-	@Id
-	@Column(name = "pernr", nullable = false)
-	private Long pernr;
-	
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "subty", referencedColumnName = "subty")
-	private T591S subty;
-	
-	@Id
-	@Temporal(TemporalType.DATE)
-	@Column(name = "endda", nullable = false)
-	private Date endda;
-	
-	@Id
-	@Temporal(TemporalType.DATE)
-	@Column(name = "begda", nullable = false)
-	private Date begda;
-	*/
-	
 	@Column(name = "pernr", nullable = false, insertable = false, updatable = false)
 	private Long pernr;
 	
 	@ManyToOne
 	@JoinColumn(name = "subty", referencedColumnName = "subty", insertable = false, updatable = false)
 	private T591S subty;
-	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "endda", nullable = false, insertable = false, updatable = false)
-	private Date endda;
 	
 	public IT0006() {}
 	
@@ -70,13 +36,6 @@ public class IT0006 implements Serializable {
 	
 	@Column(name = "seqnr")
 	private Long seqnr;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "aedtm")
-	private Date aedtm;
-	
-	@Column(name = "uname")
-	private String uname;
 	
 	@Column(name = "anssa", length = 4)
 	private String anssa;
@@ -123,50 +82,6 @@ public class IT0006 implements Serializable {
 	private String num01;
 	
 	/**
-	 * GET Personnel number.
-	 * 
-	 * @return
-	 */
-	/*
-	public Long getPernr() {
-		return pernr;
-	}
-	*/
-	
-	/**
-	 * GET Address Type.
-	 * 
-	 * @return
-	 */
-	/*
-	public T591S getSubty() {
-		return subty;
-	}
-	*/
-	
-	/**
-	 * GET End Date.
-	 * 
-	 * @return
-	 */
-	/*
-	public Date getEndda() {
-		return endda;
-	}
-	*/
-	
-	/**
-	 * GET Begin Date.
-	 * 
-	 * @return
-	 */
-	/*
-	public Date getBegda() {
-		return begda;
-	}
-	*/
-	
-	/**
 	 * GET Infotype Record No.
 	 * 
 	 * @return
@@ -185,30 +100,16 @@ public class IT0006 implements Serializable {
 	}
 	
 	/**
-	 * GET Changed On.
-	 * 
-	 * @return
-	 */
-	public Date getAedtm() {
-		return aedtm;
-	}
-	
-	/**
-	 * GET Changed By.
-	 * 
-	 * @return
-	 */
-	public String getUname() {
-		return uname;
-	}
-	
-	/**
 	 * Get Address Type.
 	 * 
 	 * @return
 	 */
 	public String getAnssa() {
 		return anssa;
+	}
+	
+	public void setAnssa(String anssa) {
+		this.anssa = anssa;
 	}
 	
 	/**
@@ -220,6 +121,10 @@ public class IT0006 implements Serializable {
 		return name2;
 	}
 	
+	public void setName2(String name2) {
+		this.name2 = name2;
+	}
+	
 	/**
 	 * GET Street and House No.
 	 * 
@@ -227,6 +132,10 @@ public class IT0006 implements Serializable {
 	 */
 	public String getStras() {
 		return stras;
+	}
+	
+	public void setStras(String stras) {
+		this.stras = stras;
 	}
 	
 	/**
@@ -238,6 +147,10 @@ public class IT0006 implements Serializable {
 		return ort01;
 	}
 	
+	public void setOrt01(String ort01) {
+		this.ort01 = ort01;
+	}
+	
 	/**
 	 * GET District.
 	 * 
@@ -245,6 +158,10 @@ public class IT0006 implements Serializable {
 	 */
 	public String getOrt02() {
 		return ort02;
+	}
+	
+	public void setOrt02(String ort02) {
+		this.ort02 = ort02;
 	}
 	
 	/**
@@ -256,6 +173,10 @@ public class IT0006 implements Serializable {
 		return pstlz;
 	}
 	
+	public void setPstlz(String pstlz) {
+		this.pstlz = pstlz;
+	}
+	
 	/**
 	 * GET Country Key.
 	 * 
@@ -263,6 +184,10 @@ public class IT0006 implements Serializable {
 	 */
 	public T005T getT005t() {
 		return t005t;
+	}
+	
+	public void setT005t(T005T t005t) {
+		this.t005t = t005t;
 	}
 	
 	/**
@@ -274,6 +199,10 @@ public class IT0006 implements Serializable {
 		return telnr;
 	}
 	
+	public void setTelnr(String telnr) {
+		this.telnr = telnr;
+	}
+	
 	/**
 	 * GET Distaince in Km.
 	 * 
@@ -281,6 +210,10 @@ public class IT0006 implements Serializable {
 	 */
 	public Double getEntkm() {
 		return entkm;
+	}
+	
+	public void setEntkm(Double entkm) {
+		this.entkm = entkm;
 	}
 	
 	/**
@@ -292,6 +225,10 @@ public class IT0006 implements Serializable {
 		return locat;
 	}
 	
+	public void setLocat(String locat) {
+		this.locat = locat;
+	}
+	
 	/**
 	 * GET Region.
 	 * 
@@ -299,6 +236,10 @@ public class IT0006 implements Serializable {
 	 */
 	public T005U getT005u() {
 		return t005u;
+	}
+	
+	public void setT005u(T005U t005u) {
+		this.t005u = t005u;
 	}
 	
 	/**
@@ -310,6 +251,10 @@ public class IT0006 implements Serializable {
 		return entk2;
 	}
 	
+	public void setEntk2(Double entk2) {
+		this.entk2 = entk2;
+	}
+	
 	/**
 	 * GET Communication Type.
 	 * 
@@ -319,6 +264,10 @@ public class IT0006 implements Serializable {
 		return com01;
 	}
 	
+	public void setCom01(String com01) {
+		this.com01 = com01;
+	}
+	
 	/**
 	 * GET Number.
 	 * 
@@ -326,5 +275,9 @@ public class IT0006 implements Serializable {
 	 */
 	public String getNum01() {
 		return num01;
+	}
+	
+	public void setNum01(String num01) {
+		this.num01 = num01;
 	}
 }
