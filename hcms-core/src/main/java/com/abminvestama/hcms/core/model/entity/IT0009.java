@@ -46,11 +46,13 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	@Column(name = "anzhl")
 	private Double anzhl;
 	
-	@Column(name = "bnksa")
+	@ManyToOne
+	@JoinColumn(name = "bnksa", referencedColumnName = "subty")
 	private String bnksa;
 	
-	@Column(name = "zlsch")
-	private String zlsch;
+	@ManyToOne
+	@JoinColumn(name = "zlsch", referencedColumnName = "zlsch")
+	private T042Z t042z;
 	
 	@Column(name = "emftx")
 	private String emftx;
@@ -61,11 +63,13 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	@Column(name = "bkort")
 	private String bkort;
 	
-	@Column(name = "banks")
-	private String banks;
+	@ManyToOne
+	@JoinColumn(name = "banks", referencedColumnName = "land1")
+	private T005T t005t;
 	
-	@Column(name = "bankl")
-	private String bankl;
+	@ManyToOne
+	@JoinColumn(name = "bankl", referencedColumnName = "bankl")
+	private Bnka bnka;
 	
 	@Column(name = "bankn")
 	private String bankn;
@@ -141,8 +145,8 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 * 
 	 * @return
 	 */
-	public String getZlsch() {
-		return zlsch;
+	public T042Z getT042z() {
+		return t042z;
 	}
 
 	/**
@@ -177,8 +181,8 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 * 
 	 * @return
 	 */
-	public String getBanks() {
-		return banks;
+	public T005T getT005t() {
+		return t005t;
 	}
 
 	/**
@@ -186,8 +190,8 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 * 
 	 * @return
 	 */
-	public String getBankl() {
-		return bankl;
+	public Bnka getBnka() {
+		return bnka;
 	}
 
 	/**

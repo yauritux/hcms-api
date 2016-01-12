@@ -60,4 +60,39 @@ public class T005T implements Serializable {
 	public String getNatio() {
 		return natio;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+		
+		if (o == null || o.getClass() != this.getClass()) {
+			return false;
+		}
+		
+		final T005T obj = (T005T) o;
+		
+		if (obj.getLand1() != null ? !obj.getLand1().equalsIgnoreCase(land1) : land1 != null) {
+			return false;
+		}
+		
+		if (obj.getLandx() != null ? !obj.getLandx().equalsIgnoreCase(landx) : landx != null) {
+			return false;
+		}
+		
+		if (obj.getNatio() != null ? !obj.getNatio().equalsIgnoreCase(natio) : natio != null) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = this.getLand1() != null ? this.getLand1().hashCode() : 0;
+		result = result * 31 + (this.getLandx() != null ? this.getLandx().hashCode() : 0);
+		result = result * 31 + (this.getNatio() != null ? this.getNatio().hashCode() : 0);
+		return result;
+	}
 }
