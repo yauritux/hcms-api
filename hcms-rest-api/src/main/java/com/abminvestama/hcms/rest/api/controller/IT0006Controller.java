@@ -8,12 +8,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +52,7 @@ public class IT0006Controller extends AbstractResource {
 	private IT0006CommandService it0006CommandService;
 	private IT0006QueryService it0006QueryService;
 	private UserQueryService userQueryService;
+	private Validator it0006Validator;
 	
 	@Autowired
 	void setIT0006CommandService(IT0006CommandService it0006CommandService) {
@@ -62,6 +67,12 @@ public class IT0006Controller extends AbstractResource {
 	@Autowired
 	void setUserQueryService(UserQueryService userQueryService) {
 		this.userQueryService = userQueryService;
+	}
+	
+	@Autowired
+	@Qualifier("it0006Validator")
+	public void setIt0006Validator(Validator it0006Validator) {
+		this.it0006Validator = it0006Validator;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/ssn/{pernr}", 
@@ -149,5 +160,10 @@ public class IT0006Controller extends AbstractResource {
 		
 		response.add(linkTo(methodOn(IT0006Controller.class).edit(request, result)).withSelfRel());
 		return response;
+	}
+	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.addValidators(it0006Validator);
 	}
 }

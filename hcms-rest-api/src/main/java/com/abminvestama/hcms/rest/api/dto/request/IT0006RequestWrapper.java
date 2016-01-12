@@ -151,7 +151,7 @@ public class IT0006RequestWrapper {
 	 * @throws Exception
 	 */
 	@JsonProperty("end_date")
-	public String getEndda() throws Exception {
+	public String getEndda() {
 		return endda;
 	}
 	
@@ -166,7 +166,7 @@ public class IT0006RequestWrapper {
 	 * @throws Exception
 	 */
 	@JsonProperty("begin_date")
-	public String getBegda() throws Exception {
+	public String getBegda() {
 		return begda;
 	}
 	

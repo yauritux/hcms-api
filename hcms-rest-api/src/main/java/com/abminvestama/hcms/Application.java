@@ -37,11 +37,19 @@ public class Application extends SpringBootServletInitializer {
 		SpringApplication.run(Application.class, args);
 	}
 	
-	@Bean
+	/**
+	 * needed to trigger JSR-303 (Bean Validation 1.0)
+	 * @return
+	 */
+	@Bean 
 	public LocalValidatorFactoryBean localValidatorFactoryBean() {
 		return new LocalValidatorFactoryBean();
 	}
 	
+	/**
+	 * Needed to trigger JSR-349 (Bean Validation 1.1, i.e. Method Validation)
+	 * @return
+	 */
 	@Bean
 	public MethodValidationPostProcessor methodValidationPostProcessor() {
 		return new MethodValidationPostProcessor();

@@ -40,8 +40,7 @@ public final class CommonRESTUtil {
 			cal.clear(Calendar.AM_PM);
 			cal.clear(Calendar.MINUTE);
 			cal.clear(Calendar.SECOND);
-			cal.clear(Calendar.MILLISECOND);		
-			
+			cal.clear(Calendar.MILLISECOND);					
 		} catch (NumberFormatException nfe) {
 			throw new DateTimeException("Year, Month, and Date should be in numeric. E.g. : 2015-01-18");
 		}		
