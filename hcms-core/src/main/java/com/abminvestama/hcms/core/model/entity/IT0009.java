@@ -48,11 +48,11 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	
 	@ManyToOne
 	@JoinColumn(name = "bnksa", referencedColumnName = "subty")
-	private String bnksa;
+	private T591S bnksa;
 	
 	@ManyToOne
 	@JoinColumn(name = "zlsch", referencedColumnName = "zlsch")
-	private T042Z t042z;
+	private T042Z zlsch;
 	
 	@Column(name = "emftx")
 	private String emftx;
@@ -65,11 +65,11 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	
 	@ManyToOne
 	@JoinColumn(name = "banks", referencedColumnName = "land1")
-	private T005T t005t;
+	private T005T banks;
 	
 	@ManyToOne
 	@JoinColumn(name = "bankl", referencedColumnName = "bankl")
-	private Bnka bnka;
+	private BNKA bankl;
 	
 	@Column(name = "bankn")
 	private String bankn;
@@ -112,6 +112,10 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	public Double getBetrg() {
 		return betrg;
 	}
+	
+	public void setBetrg(Double betrg) {
+		this.betrg = betrg;
+	}
 
 	/**
 	 * GET Payment Currency.
@@ -120,6 +124,10 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 */
 	public String getWaers() {
 		return waers;
+	}
+	
+	public void setWaers(String waers) {
+		this.waers = waers;
 	}
 
 	/**
@@ -130,14 +138,22 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	public Double getAnzhl() {
 		return anzhl;
 	}
+	
+	public void setAnzhl(Double anzhl) {
+		this.anzhl = anzhl;
+	}
 
 	/**
 	 * GET Bank Details Type.
 	 * 
 	 * @return
 	 */
-	public String getBnksa() {
+	public T591S getBnksa() {
 		return bnksa;
+	}
+	
+	public void setBnksa(T591S bnksa) {
+		this.bnksa = bnksa;
 	}
 
 	/**
@@ -145,8 +161,12 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 * 
 	 * @return
 	 */
-	public T042Z getT042z() {
-		return t042z;
+	public T042Z getZlsch() {
+		return zlsch;
+	}
+	
+	public void setZlsch(T042Z zlsch) {
+		this.zlsch = zlsch;
 	}
 
 	/**
@@ -157,6 +177,10 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	public String getEmftx() {
 		return emftx;
 	}
+	
+	public void setEmftx(String emftx) {
+		this.emftx = emftx;
+	}
 
 	/**
 	 * GET Postal Code.
@@ -165,6 +189,10 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 */
 	public String getBkplz() {
 		return bkplz;
+	}
+	
+	public void setBkplz(String bkplz) {
+		this.bkplz = bkplz;
 	}
 
 	/**
@@ -175,14 +203,22 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	public String getBkort() {
 		return bkort;
 	}
+	
+	public void setBkort(String bkort) {
+		this.bkort = bkort;
+	}
 
 	/**
 	 * GET Bank Country.
 	 * 
 	 * @return
 	 */
-	public T005T getT005t() {
-		return t005t;
+	public T005T getBanks() {
+		return banks;
+	}
+	
+	public void setBanks(T005T banks) {
+		this.banks = banks;
 	}
 
 	/**
@@ -190,8 +226,12 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 * 
 	 * @return
 	 */
-	public Bnka getBnka() {
-		return bnka;
+	public BNKA getBankl() {
+		return bankl;
+	}
+	
+	public void setBankl(BNKA bankl) {
+		this.bankl = bankl;
 	}
 
 	/**
@@ -202,6 +242,10 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	public String getBankn() {
 		return bankn;
 	}
+	
+	public void setBankn(String bankn) {
+		this.bankn = bankn;
+	}
 
 	/**
 	 * GET Purpose.
@@ -210,5 +254,9 @@ public class IT0009 extends SAPAbstractEntity<IT0009Key> {
 	 */
 	public String getZweck() {
 		return zweck;
+	}
+	
+	public void  setZweck(String zweck) {
+		this.zweck = zweck;
 	}
 }

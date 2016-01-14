@@ -90,11 +90,11 @@ public class IT0009Key implements Serializable {
 		
 		final IT0009Key key = (IT0009Key) o;
 		
-		if (key.getPernr() != null ? key.getPernr().longValue() != pernr.longValue() : pernr != null) {
+		if (key.getPernr() != null ? key.getPernr().longValue() != (pernr != null ? pernr.longValue() : 0) : pernr != null) {
 			return false;
 		}
 		
-		if (key.getSubty() != null ? !key.getSubty().equalsIgnoreCase(subty) : subty != null) {
+		if (key.getSubty() != null ? !key.getSubty().equalsIgnoreCase(subty != null ? subty : "") : subty != null) {
 			return false;
 		}
 		

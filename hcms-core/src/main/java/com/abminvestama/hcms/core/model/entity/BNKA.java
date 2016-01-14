@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "bnka")
-public class Bnka implements Serializable {
+public class BNKA implements Serializable {
 
 	private static final long serialVersionUID = 4957564341626864540L;
 	
@@ -104,7 +104,7 @@ public class Bnka implements Serializable {
 			return false;
 		}
 		
-		final Bnka obj = (Bnka) o;
+		final BNKA obj = (BNKA) o;
 		
 		if (obj.getBankl() != null ? !obj.getBankl().equalsIgnoreCase(bankl) : bankl != null) {
 			return false;
