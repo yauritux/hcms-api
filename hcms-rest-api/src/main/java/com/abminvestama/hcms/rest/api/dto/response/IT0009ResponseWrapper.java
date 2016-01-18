@@ -2,6 +2,7 @@ package com.abminvestama.hcms.rest.api.dto.response;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.abminvestama.hcms.core.model.entity.IT0009;
@@ -61,10 +62,19 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 				.setPernr(it0009.getId().getPernr())
-				.setSubty(it0009.getSubty() != null ? it0009.getSubty().getStext() : it0009.getId().getSubty())
+				.setSubty(it0009.getSubty() != null ? StringUtils.defaultString(it0009.getSubty().getStext(), "") : it0009.getId().getSubty())
 				.setEndda(it0009.getId().getEndda()).setBegda(it0009.getId().getBegda())
 				.setBetrg(it0009.getBetrg() != null ? it0009.getBetrg() : 0.0)
-				.setWaers(it0009.getWaers());
+				.setWaers(it0009.getWaers()).setAnzhl(it0009.getAnzhl() != null ? it0009.getAnzhl().doubleValue() : 0.0)
+				.setBnksa(it0009.getBnksa() != null ? StringUtils.defaultString(it0009.getBnksa().getStext(), "") : "")
+				.setZlsch(it0009.getZlsch() != null ? it0009.getZlsch().getText1() : "")
+				.setEmftx(StringUtils.defaultString(it0009.getEmftx(), ""))
+				.setBkplz(StringUtils.defaultString(it0009.getBkplz(), ""))
+				.setBkort(StringUtils.defaultString(it0009.getBkort(), ""))
+				.setBanks(it0009.getBanks() != null ? StringUtils.defaultString(it0009.getBanks().getLandx(), "") : "")
+				.setBankl(it0009.getBankl() != null ? StringUtils.defaultString(it0009.getBankl().getBanka(), "") : "")
+				.setBankn(StringUtils.defaultString(it0009.getBankn(), ""))
+				.setZweck(StringUtils.defaultString(it0009.getZweck(), ""));
 		}
 	}
 
@@ -167,6 +177,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	public double getAnzhl() {
 		return anzhl;
 	}
+	
+	private IT0009ResponseWrapper setAnzhl(double anzhl) {
+		this.anzhl = anzhl;
+		return this;
+	}
 
 	/**
 	 * GET Bank Details Type.
@@ -176,6 +191,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	@JsonProperty("bank_details_type")
 	public String getBnksa() {
 		return bnksa;
+	}
+	
+	private IT0009ResponseWrapper setBnksa(String bnksa) {
+		this.bnksa = bnksa;
+		return this;
 	}
 
 	/**
@@ -187,6 +207,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	public String getZlsch() {
 		return zlsch;
 	}
+	
+	private IT0009ResponseWrapper setZlsch(String zlsch) {
+		this.zlsch = zlsch;
+		return this;
+	}
 
 	/**
 	 * GET Payee.
@@ -196,6 +221,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	@JsonProperty("payee")
 	public String getEmftx() {
 		return emftx;
+	}
+	
+	private IT0009ResponseWrapper setEmftx(String emftx) {
+		this.emftx = emftx;
+		return this;
 	}
 
 	/**
@@ -207,6 +237,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	public String getBkplz() {
 		return bkplz;
 	}
+	
+	private IT0009ResponseWrapper setBkplz(String bkplz) {
+		this.bkplz = bkplz;
+		return this;
+	}
 
 	/**
 	 * GET City.
@@ -216,6 +251,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	@JsonProperty("city")
 	public String getBkort() {
 		return bkort;
+	}
+	
+	private IT0009ResponseWrapper setBkort(String bkort) {
+		this.bkort = bkort;
+		return this;
 	}
 
 	/**
@@ -227,6 +267,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	public String getBanks() {
 		return banks;
 	}
+	
+	private IT0009ResponseWrapper setBanks(String banks) {
+		this.banks = banks;
+		return this;
+	}
 
 	/**
 	 * GET Bank Key.
@@ -236,6 +281,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	@JsonProperty("bank_key")
 	public String getBankl() {
 		return bankl;
+	}
+	
+	private IT0009ResponseWrapper setBankl(String bankl) {
+		this.bankl = bankl;
+		return this;
 	}
 
 	/**
@@ -247,6 +297,11 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	public String getBankn() {
 		return bankn;
 	}
+	
+	private IT0009ResponseWrapper setBankn(String bankn) {
+		this.bankn = bankn;
+		return this;
+	}
 
 	/**
 	 * GET Purpose.
@@ -257,4 +312,9 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	public String getZweck() {
 		return zweck;
 	}	
+	
+	private IT0009ResponseWrapper setZweck(String zweck) {
+		this.zweck = zweck;
+		return this;
+	}
 }

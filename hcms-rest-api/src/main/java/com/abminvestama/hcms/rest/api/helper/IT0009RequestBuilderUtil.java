@@ -16,6 +16,7 @@ import com.abminvestama.hcms.core.service.api.business.query.BNKAQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T005TQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T042ZQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T591SQueryService;
+import com.abminvestama.hcms.rest.api.dto.helper.IT0009RequestComparatorContainer;
 import com.abminvestama.hcms.rest.api.dto.request.IT0009RequestWrapper;
 
 /**
@@ -29,9 +30,6 @@ import com.abminvestama.hcms.rest.api.dto.request.IT0009RequestWrapper;
 @Transactional(readOnly = true)
 public class IT0009RequestBuilderUtil {
 
-	private IT0009RequestWrapper it0009Payload;
-	private boolean isDataChanged;
-	
 	private T591SQueryService t591sQueryService;
 	private T042ZQueryService t042zQueryService;
 	private T005TQueryService t005tQueryService;
@@ -57,105 +55,98 @@ public class IT0009RequestBuilderUtil {
 		this.bnkaQueryService = bnkaQueryService;
 	}
 	
-	public void setIT0009Payload(IT0009RequestWrapper it0009Payload) {
-		this.it0009Payload = it0009Payload;
-	}
-	
 	/**
 	 * Compare IT0009 request payload with existing IT0009 in the database.
 	 * Update existing IT0009 data with the latest data comes from the request payload. 
 	 * 
+	 * @param requestPayload request data 
 	 * @param it0009DB current existing IT0009 in the database.
 	 * @return updated IT0009 object to be persisted into the database.
 	 */
-	public final IT0009 compareAndReturnUpdatedData(IT0009 it0009DB) {
+	public final IT0009RequestComparatorContainer compareAndReturnUpdatedData(IT0009RequestWrapper requestPayload, IT0009 it0009DB) {
 		if (it0009DB == null) {
 			it0009DB = new IT0009();
 		} else {
-			if (it0009Payload.getBetrg() != (it0009DB.getBetrg() != null ? it0009DB.getBetrg().doubleValue() : 0.0)) {
-				it0009DB.setBetrg(it0009Payload.getBetrg());
-				isDataChanged = true;
+			if (requestPayload.getBetrg() != (it0009DB.getBetrg() != null ? it0009DB.getBetrg().doubleValue() : 0.0)) {
+				it0009DB.setBetrg(requestPayload.getBetrg());
+				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(it0009Payload.getWaers(), it0009DB.getWaers())) {
-				it0009DB.setWaers(StringUtils.defaultString(it0009Payload.getWaers()));
-				isDataChanged = true;
+			if (isDifferentValues(requestPayload.getWaers(), it0009DB.getWaers())) {
+				it0009DB.setWaers(StringUtils.defaultString(requestPayload.getWaers()));
+				requestPayload.setIsDataChanged(true);
 			}
-			if (it0009Payload.getAnzhl() != (it0009DB.getAnzhl() != null ? it0009DB.getAnzhl().doubleValue() : 0.0)) {
-				it0009DB.setAnzhl(it0009Payload.getAnzhl());
-				isDataChanged = true;
+			if (requestPayload.getAnzhl() != (it0009DB.getAnzhl() != null ? it0009DB.getAnzhl().doubleValue() : 0.0)) {
+				it0009DB.setAnzhl(requestPayload.getAnzhl());
+				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(it0009Payload.getBnksa(), it0009DB.getBnksa() != null ? it0009DB.getBnksa().getSubty() : "")) {
+			if (isDifferentValues(requestPayload.getBnksa(), it0009DB.getBnksa() != null ? it0009DB.getBnksa().getSubty() : "")) {
 				try {
-					Optional<T591S> newT591S = t591sQueryService.findById(Optional.ofNullable(it0009Payload.getBnksa()));
+					Optional<T591S> newT591S = t591sQueryService.findById(Optional.ofNullable(requestPayload.getBnksa()));
 					if (newT591S.isPresent()) {
 						it0009DB.setBnksa(newT591S.get());
-						isDataChanged = true;
+						requestPayload.setIsDataChanged(true);
 					}
 				} catch (Exception e) {
 					// bnksa not found..., ignore change
 				}
 			}
-			if (isDifferentValues(it0009Payload.getZlsch(), it0009DB.getZlsch() != null ? it0009DB.getZlsch().getZlsch() : "")) {
+			if (isDifferentValues(requestPayload.getZlsch(), it0009DB.getZlsch() != null ? it0009DB.getZlsch().getZlsch() : "")) {
 				try {
-					Optional<T042Z> newT042Z = t042zQueryService.findById(Optional.ofNullable(it0009Payload.getZlsch()));
+					Optional<T042Z> newT042Z = t042zQueryService.findById(Optional.ofNullable(requestPayload.getZlsch()));
 					if (newT042Z.isPresent()) {
 						it0009DB.setZlsch(newT042Z.get());
-						isDataChanged = true;
+						requestPayload.setIsDataChanged(true);
 					}
 				} catch (Exception e) {
 					// zlsch not found..., ignore change
 				}
 			}
-			if (isDifferentValues(it0009Payload.getEmftx(), it0009DB.getEmftx())) {
-				it0009DB.setEmftx(it0009Payload.getEmftx());
-				isDataChanged = true;
+			if (isDifferentValues(requestPayload.getEmftx(), it0009DB.getEmftx())) {
+				it0009DB.setEmftx(requestPayload.getEmftx());
+				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(it0009Payload.getBkplz(), it0009DB.getBkplz())) {
-				it0009DB.setBkplz(it0009Payload.getBkplz());
-				isDataChanged = true;
+			if (isDifferentValues(requestPayload.getBkplz(), it0009DB.getBkplz())) {
+				it0009DB.setBkplz(requestPayload.getBkplz());
+				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(it0009Payload.getBkort(), it0009DB.getBkort())) {
-				it0009DB.setBkort(it0009Payload.getBkort());
-				isDataChanged = true;
+			if (isDifferentValues(requestPayload.getBkort(), it0009DB.getBkort())) {
+				it0009DB.setBkort(requestPayload.getBkort());
+				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(it0009Payload.getBanks(), it0009DB.getBanks() != null ? it0009DB.getBanks().getLand1() : "")) {
+			if (isDifferentValues(requestPayload.getBanks(), it0009DB.getBanks() != null ? it0009DB.getBanks().getLand1() : "")) {
 				try {
-					Optional<T005T> newT005T = t005tQueryService.findById(Optional.ofNullable(it0009Payload.getBanks()));
+					Optional<T005T> newT005T = t005tQueryService.findById(Optional.ofNullable(requestPayload.getBanks()));
 					if (newT005T.isPresent()) {
 						it0009DB.setBanks(newT005T.get());
-						isDataChanged = true;
+						requestPayload.setIsDataChanged(true);
 					}
 				} catch (Exception e) {
 					// banks not found..., ignore change
 				}
 			}
-			if (isDifferentValues(it0009Payload.getBankl(), it0009DB.getBankn())) {
+			if (isDifferentValues(requestPayload.getBankl(), it0009DB.getBankn())) {
 				try {
-					Optional<BNKA> newBNKA = bnkaQueryService.findById(Optional.ofNullable(it0009Payload.getBankl()));
+					Optional<BNKA> newBNKA = bnkaQueryService.findById(Optional.ofNullable(requestPayload.getBankl()));
 					if (newBNKA.isPresent()) {
 						it0009DB.setBankl(newBNKA.get());
-						isDataChanged = true;
+						requestPayload.setIsDataChanged(true);
 					}
 				} catch (Exception e) {
 					// bnka not found..., ignore change
 				}
 			}
-			if (isDifferentValues(it0009Payload.getBankn(), it0009DB.getBankn())) {
-				it0009DB.setBankn(it0009Payload.getBankn());
-				isDataChanged = true;
+			if (isDifferentValues(requestPayload.getBankn(), it0009DB.getBankn())) {
+				it0009DB.setBankn(requestPayload.getBankn());
+				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(it0009Payload.getZweck(), it0009DB.getZweck())) {
-				it0009DB.setZweck(it0009Payload.getZweck());
-				isDataChanged = true;
+			if (isDifferentValues(requestPayload.getZweck(), it0009DB.getZweck())) {
+				it0009DB.setZweck(requestPayload.getZweck());
+				requestPayload.setIsDataChanged(true);
 			}
 		}
 		
-		return it0009DB;
+		return new IT0009RequestComparatorContainer(it0009DB, requestPayload);
 	}		
-	
-	public final boolean isDataChanged() {
-		return isDataChanged;
-	}
 	
 	private boolean isDifferentValues(String field1, String field2) {
 		return (StringUtils.isNotBlank(field1) && !field1.trim().equalsIgnoreCase(field2 != null ? field2.trim() : ""));

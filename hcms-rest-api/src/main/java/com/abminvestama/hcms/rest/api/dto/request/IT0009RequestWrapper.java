@@ -2,6 +2,7 @@ package com.abminvestama.hcms.rest.api.dto.request;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -32,6 +33,17 @@ public class IT0009RequestWrapper implements Serializable {
 	private String bankl;
 	private String bankn;
 	private String zweck;
+	
+	@JsonIgnore
+	private boolean isDataChanged;
+	
+	public boolean isDataChanged() {
+		return isDataChanged;
+	}
+	
+	public void setIsDataChanged(boolean isDataChanged) {
+		this.isDataChanged = isDataChanged;
+	}
 
 	@JsonProperty("ssn")
 	public long getPernr() {

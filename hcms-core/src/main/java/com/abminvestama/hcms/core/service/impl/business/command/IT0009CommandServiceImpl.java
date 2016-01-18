@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.abminvestama.hcms.core.exception.CannotPersistException;
-import com.abminvestama.hcms.core.model.entity.IT0006;
+import com.abminvestama.hcms.core.model.entity.IT0009;
 import com.abminvestama.hcms.core.model.entity.User;
-import com.abminvestama.hcms.core.repository.IT0006Repository;
-import com.abminvestama.hcms.core.service.api.business.command.IT0006CommandService;
+import com.abminvestama.hcms.core.repository.IT0009Repository;
+import com.abminvestama.hcms.core.service.api.business.command.IT0009CommandService;
 
 /**
  * 
@@ -22,39 +22,39 @@ import com.abminvestama.hcms.core.service.api.business.command.IT0006CommandServ
  * @since 1.0.0
  *
  */
-@Service("it0006CommandService")
+@Service("it0009CommandService")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-public class IT0006CommandServiceImpl implements IT0006CommandService {
+public class IT0009CommandServiceImpl implements IT0009CommandService {
 	
-	private IT0006Repository it0006Repository;
+	private IT0009Repository it0009Repository;
 	
 	@Autowired
-	IT0006CommandServiceImpl(IT0006Repository it0006Repository) {
-		this.it0006Repository = it0006Repository;
+	IT0009CommandServiceImpl(IT0009Repository it0009Repository) {
+		this.it0009Repository = it0009Repository;
 	}
 
 	@Override
-	public Optional<IT0006> save(IT0006 entity, User user)
+	public Optional<IT0009> save(IT0009 entity, User user)
 			throws CannotPersistException, NoSuchMethodException, ConstraintViolationException {
 		if (user != null) {
 			entity.setUname(user.getId());
 		}
 		
 		try {
-			return Optional.ofNullable(it0006Repository.save(entity));
+			return Optional.ofNullable(it0009Repository.save(entity));
 		} catch (Exception e) {
-			throw new CannotPersistException("Cannot persist IT0006 (Address Details).Reason=" + e.getMessage());
+			throw new CannotPersistException("Cannot persist IT0009 (Bank Details).Reason=" + e.getMessage());
 		}		
 	}
 
 	@Override
-	public boolean delete(IT0006 entity, User user) throws NoSuchMethodException, ConstraintViolationException {
+	public boolean delete(IT0009 entity, User user) throws NoSuchMethodException, ConstraintViolationException {
 		// no delete at this version.
 		throw new NoSuchMethodException("There's no deletion on this version. Please consult to your Consultant.");
 	}
 
 	@Override
-	public boolean restore(IT0006 entity, User user) throws NoSuchMethodException, ConstraintViolationException {
+	public boolean restore(IT0009 entity, User user) throws NoSuchMethodException, ConstraintViolationException {
 		// since we don't have delete operation, then we don't need the 'restore' as well
 		throw new NoSuchMethodException("Invalid Operation. Please consult to your Consultant.");
 	}
