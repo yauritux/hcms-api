@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.abminvestama.hcms.common.util.CommonComparatorFunction;
 import com.abminvestama.hcms.core.model.entity.BNKA;
 import com.abminvestama.hcms.core.model.entity.IT0009;
 import com.abminvestama.hcms.core.model.entity.T005T;
@@ -16,7 +17,7 @@ import com.abminvestama.hcms.core.service.api.business.query.BNKAQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T005TQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T042ZQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T591SQueryService;
-import com.abminvestama.hcms.rest.api.dto.helper.IT0009RequestComparatorContainer;
+import com.abminvestama.hcms.rest.api.dto.helper.RequestObjectComparatorContainer;
 import com.abminvestama.hcms.rest.api.dto.request.IT0009RequestWrapper;
 
 /**
@@ -63,7 +64,7 @@ public class IT0009RequestBuilderUtil {
 	 * @param it0009DB current existing IT0009 in the database.
 	 * @return updated IT0009 object to be persisted into the database.
 	 */
-	public final IT0009RequestComparatorContainer compareAndReturnUpdatedData(IT0009RequestWrapper requestPayload, IT0009 it0009DB) {
+	public final RequestObjectComparatorContainer<IT0009, IT0009RequestWrapper> compareAndReturnUpdatedData(IT0009RequestWrapper requestPayload, IT0009 it0009DB) {
 		if (it0009DB == null) {
 			it0009DB = new IT0009();
 		} else {
@@ -71,7 +72,7 @@ public class IT0009RequestBuilderUtil {
 				it0009DB.setBetrg(requestPayload.getBetrg());
 				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(requestPayload.getWaers(), it0009DB.getWaers())) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getWaers(), it0009DB.getWaers())) {
 				it0009DB.setWaers(StringUtils.defaultString(requestPayload.getWaers()));
 				requestPayload.setIsDataChanged(true);
 			}
@@ -79,7 +80,7 @@ public class IT0009RequestBuilderUtil {
 				it0009DB.setAnzhl(requestPayload.getAnzhl());
 				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(requestPayload.getBnksa(), it0009DB.getBnksa() != null ? it0009DB.getBnksa().getSubty() : "")) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBnksa(), it0009DB.getBnksa() != null ? it0009DB.getBnksa().getSubty() : "")) {
 				try {
 					Optional<T591S> newT591S = t591sQueryService.findById(Optional.ofNullable(requestPayload.getBnksa()));
 					if (newT591S.isPresent()) {
@@ -90,7 +91,7 @@ public class IT0009RequestBuilderUtil {
 					// bnksa not found..., ignore change
 				}
 			}
-			if (isDifferentValues(requestPayload.getZlsch(), it0009DB.getZlsch() != null ? it0009DB.getZlsch().getZlsch() : "")) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getZlsch(), it0009DB.getZlsch() != null ? it0009DB.getZlsch().getZlsch() : "")) {
 				try {
 					Optional<T042Z> newT042Z = t042zQueryService.findById(Optional.ofNullable(requestPayload.getZlsch()));
 					if (newT042Z.isPresent()) {
@@ -101,19 +102,19 @@ public class IT0009RequestBuilderUtil {
 					// zlsch not found..., ignore change
 				}
 			}
-			if (isDifferentValues(requestPayload.getEmftx(), it0009DB.getEmftx())) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getEmftx(), it0009DB.getEmftx())) {
 				it0009DB.setEmftx(requestPayload.getEmftx());
 				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(requestPayload.getBkplz(), it0009DB.getBkplz())) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBkplz(), it0009DB.getBkplz())) {
 				it0009DB.setBkplz(requestPayload.getBkplz());
 				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(requestPayload.getBkort(), it0009DB.getBkort())) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBkort(), it0009DB.getBkort())) {
 				it0009DB.setBkort(requestPayload.getBkort());
 				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(requestPayload.getBanks(), it0009DB.getBanks() != null ? it0009DB.getBanks().getLand1() : "")) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBanks(), it0009DB.getBanks() != null ? it0009DB.getBanks().getLand1() : "")) {
 				try {
 					Optional<T005T> newT005T = t005tQueryService.findById(Optional.ofNullable(requestPayload.getBanks()));
 					if (newT005T.isPresent()) {
@@ -124,7 +125,7 @@ public class IT0009RequestBuilderUtil {
 					// banks not found..., ignore change
 				}
 			}
-			if (isDifferentValues(requestPayload.getBankl(), it0009DB.getBankn())) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBankl(), it0009DB.getBankn())) {
 				try {
 					Optional<BNKA> newBNKA = bnkaQueryService.findById(Optional.ofNullable(requestPayload.getBankl()));
 					if (newBNKA.isPresent()) {
@@ -135,20 +136,16 @@ public class IT0009RequestBuilderUtil {
 					// bnka not found..., ignore change
 				}
 			}
-			if (isDifferentValues(requestPayload.getBankn(), it0009DB.getBankn())) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBankn(), it0009DB.getBankn())) {
 				it0009DB.setBankn(requestPayload.getBankn());
 				requestPayload.setIsDataChanged(true);
 			}
-			if (isDifferentValues(requestPayload.getZweck(), it0009DB.getZweck())) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getZweck(), it0009DB.getZweck())) {
 				it0009DB.setZweck(requestPayload.getZweck());
 				requestPayload.setIsDataChanged(true);
 			}
 		}
 		
-		return new IT0009RequestComparatorContainer(it0009DB, requestPayload);
-	}		
-	
-	private boolean isDifferentValues(String field1, String field2) {
-		return (StringUtils.isNotBlank(field1) && !field1.trim().equalsIgnoreCase(field2 != null ? field2.trim() : ""));
-	}
+		return new RequestObjectComparatorContainer<IT0009, IT0009RequestWrapper>(it0009DB, requestPayload);
+	}			
 }

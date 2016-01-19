@@ -1,8 +1,5 @@
 package com.abminvestama.hcms.rest.api.dto.request;
 
-import java.io.Serializable;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,14 +10,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 
-public class IT0009RequestWrapper implements Serializable {
+public class IT0009RequestWrapper extends ITRequestWrapper {
 
 	private static final long serialVersionUID = 2539645779455671060L;
 
-	private long pernr;
-	private String subty;
-	private String endda;
-	private String begda;
 	private double betrg;
 	private String waers;
 	private double anzhl;
@@ -33,37 +26,6 @@ public class IT0009RequestWrapper implements Serializable {
 	private String bankl;
 	private String bankn;
 	private String zweck;
-	
-	@JsonIgnore
-	private boolean isDataChanged;
-	
-	public boolean isDataChanged() {
-		return isDataChanged;
-	}
-	
-	public void setIsDataChanged(boolean isDataChanged) {
-		this.isDataChanged = isDataChanged;
-	}
-
-	@JsonProperty("ssn")
-	public long getPernr() {
-		return pernr;
-	}
-	
-	@JsonProperty("subtype")
-	public String getSubty() {
-		return subty;
-	}
-	
-	@JsonProperty("end_date")
-	public String getEndda() {
-		return endda;
-	}
-	
-	@JsonProperty("begin_date")
-	public String getBegda() {
-		return begda;
-	}
 	
 	@JsonProperty("standard_value")
 	public double getBetrg() {

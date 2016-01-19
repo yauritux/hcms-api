@@ -24,19 +24,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.abminvestama.hcms.common.util.CommonDateFunction;
 import com.abminvestama.hcms.core.exception.CannotPersistException;
 import com.abminvestama.hcms.core.model.entity.IT0009;
 import com.abminvestama.hcms.core.model.entity.User;
 import com.abminvestama.hcms.core.service.api.business.command.IT0009CommandService;
 import com.abminvestama.hcms.core.service.api.business.query.IT0009QueryService;
 import com.abminvestama.hcms.core.service.api.business.query.UserQueryService;
-import com.abminvestama.hcms.rest.api.dto.helper.IT0009RequestComparatorContainer;
+import com.abminvestama.hcms.rest.api.dto.helper.RequestObjectComparatorContainer;
 import com.abminvestama.hcms.rest.api.dto.request.IT0009RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.response.APIResponseWrapper;
 import com.abminvestama.hcms.rest.api.dto.response.ArrayData;
 import com.abminvestama.hcms.rest.api.dto.response.IT0009ResponseWrapper;
 import com.abminvestama.hcms.rest.api.exception.dto.ExceptionResponseWrapper;
-import com.abminvestama.hcms.rest.api.helper.CommonRESTUtil;
 import com.abminvestama.hcms.rest.api.helper.IT0009RequestBuilderUtil;
 
 /**
@@ -55,7 +55,7 @@ public class IT0009Controller extends AbstractResource {
 	private IT0009QueryService it0009QueryService;
 	private IT0009RequestBuilderUtil it0009RequestBuilderUtil;
 	private UserQueryService userQueryService;
-	private Validator it0009Validator;
+	private Validator itValidator;
 	
 	@Autowired
 	void setIT0009CommandService(IT0009CommandService it0009CommandService) {
@@ -78,9 +78,9 @@ public class IT0009Controller extends AbstractResource {
 	}
 	
 	@Autowired
-	@Qualifier("it0009Validator")
-	void setIT0009Validator(Validator it0009Validator) {
-		this.it0009Validator = it0009Validator;
+	@Qualifier("itValidator")
+	void setITValidator(Validator itValidator) {
+		this.itValidator = itValidator;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/ssn/{pernr}", 
@@ -130,43 +130,45 @@ public class IT0009Controller extends AbstractResource {
 			
 			response = new APIResponseWrapper<>(responseWrapper);
 			
-			edit:
-			try {
-				Optional<IT0009> it0009 = it0009QueryService.findOneByCompositeKey(request.getPernr(), request.getSubty(),
-						CommonRESTUtil.convertDateRequestParameterIntoDate(request.getEndda()),
-						CommonRESTUtil.convertDateRequestParameterIntoDate(request.getBegda()));
-				if (!it0009.isPresent()) {
-					response.setMessage("Cannot update data. No Data Found!");
-					break edit;
-				}
+			edit: {
+				try {
+					Optional<IT0009> it0009 = it0009QueryService.findOneByCompositeKey(request.getPernr(), request.getSubty(),
+							CommonDateFunction.convertDateRequestParameterIntoDate(request.getEndda()),
+							CommonDateFunction.convertDateRequestParameterIntoDate(request.getBegda()));
+					if (!it0009.isPresent()) {
+						response.setMessage("Cannot update data. No Data Found!");
+						break edit;
+					}
 				
-				IT0009RequestComparatorContainer updatedContainer = it0009RequestBuilderUtil.compareAndReturnUpdatedData(request, it0009.get());
+					RequestObjectComparatorContainer<IT0009, IT0009RequestWrapper> updatedContainer = it0009RequestBuilderUtil.compareAndReturnUpdatedData(request, it0009.get());
 
-				if (updatedContainer.getRequestPayload().isPresent()) {
-					isDataChanged = updatedContainer.getRequestPayload().get().isDataChanged();
+					if (updatedContainer.getRequestPayload().isPresent()) {
+						isDataChanged = updatedContainer.getRequestPayload().get().isDataChanged();
+					}
+				
+					if (!isDataChanged) {
+						response.setMessage("No data changed. No need to perform the update.");
+						break edit;
+					}
+				
+					Optional<User> currentUser = userQueryService.findByUsername(currentUser());
+				
+					if (updatedContainer.getEntity().isPresent()) {
+						it0009 = it0009CommandService.save(updatedContainer.getEntity().get(), currentUser.isPresent() ? currentUser.get() : null);
+					}
+				
+					if (!it0009.isPresent()) {
+						throw new CannotPersistException("Cannot update IT0006 data. Please check your data!");
+					}
+				
+					responseWrapper = new IT0009ResponseWrapper(it0009.get());
+					response = new APIResponseWrapper<>(responseWrapper);
+				
+				} catch (NullPointerException nfe) { 
+					throw nfe;
+				} catch (Exception e) {
+					throw e;
 				}
-				
-				if (!isDataChanged) {
-					response.setMessage("No data changed. No need to perform the update.");
-					break edit;
-				}
-				
-				Optional<User> currentUser = userQueryService.findByUsername(currentUser());
-				
-				if (updatedContainer.getEntity().isPresent()) {
-					it0009 = it0009CommandService.save(updatedContainer.getEntity().get(), currentUser.isPresent() ? currentUser.get() : null);
-				}
-				
-				if (!it0009.isPresent()) {
-					throw new CannotPersistException("Cannot update IT0006 data. Please check your data!");
-				}
-				
-				responseWrapper = new IT0009ResponseWrapper(it0009.get());
-				
-			} catch (NullPointerException nfe) { 
-				throw nfe;
-			} catch (Exception e) {
-				throw e;
 			}
 		}
 		
@@ -176,6 +178,6 @@ public class IT0009Controller extends AbstractResource {
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		binder.addValidators(it0009Validator);
+		binder.addValidators(itValidator);
 	}
 }

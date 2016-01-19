@@ -1,9 +1,5 @@
 package com.abminvestama.hcms.rest.api.dto.request;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.abminvestama.hcms.core.model.entity.IT0006;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,12 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @since 1.0.0
  *
  */
-public class IT0006RequestWrapper {
+public class IT0006RequestWrapper extends ITRequestWrapper {
 
-	private long pernr;
-	private String subty;
-	private String endda;
-	private String begda;
+	private static final long serialVersionUID = -4315934663734665154L;
+	
 	private String anssa;
 	private String name2;
 	private String stras;
@@ -32,148 +26,8 @@ public class IT0006RequestWrapper {
 	private String com01;
 	private String num01;
 	
-	@JsonIgnore
-	private IT0006RequestBuilder requestBuilder;
-	
-	final class IT0006RequestBuilder {
-		
-		private IT0006 it0006;
-		private boolean isDataChanged;
-		
-		private IT0006RequestBuilder(IT0006 it0006Param) {
-			if (it0006Param == null) {
-				it0006 = new IT0006();
-			} else {
-				it0006 = it0006Param;
-				if (StringUtils.isNotBlank(anssa) && !anssa.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getAnssa()))) {
-					it0006.setAnssa(StringUtils.defaultString(anssa));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(name2) && !name2.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getName2()))) {
-					it0006.setName2(StringUtils.defaultString(name2));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(stras) && !stras.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getStras()))) {
-					it0006.setStras(StringUtils.defaultString(stras));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(ort01) && !ort01.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getOrt01()))) {
-					it0006.setOrt01(StringUtils.defaultString(ort01));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(ort02) && !ort02.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getOrt02()))) {
-					it0006.setOrt02(StringUtils.defaultString(ort02));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(pstlz) && !pstlz.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getPstlz()))) {
-					it0006.setPstlz(StringUtils.defaultString(pstlz));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(telnr) && !telnr.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getTelnr()))) {
-					it0006.setTelnr(StringUtils.defaultString(telnr));
-					isDataChanged = true;
-				}
-				if (it0006Param.getEntkm() != null && it0006Param.getEntkm().doubleValue() != entkm) {
-					it0006.setEntkm(Double.valueOf(entkm));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(locat) && !locat.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getLocat()))) {
-					it0006.setLocat(StringUtils.defaultString(locat));
-					isDataChanged = true;
-				}
-				if (it0006Param.getEntk2() != null && it0006Param.getEntk2().doubleValue() != entk2) {
-					it0006.setEntk2(Double.valueOf(entk2));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(com01) && !com01.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getCom01()))) {
-					it0006.setCom01(StringUtils.defaultString(com01));
-					isDataChanged = true;
-				}
-				if (StringUtils.isNotBlank(num01) && !num01.trim().equalsIgnoreCase(StringUtils.defaultString(it0006Param.getNum01()))) {
-					it0006.setNum01(StringUtils.defaultString(num01));
-					isDataChanged = true;
-				}
-			}
-		}
-		
-		IT0006 getUpdatedObject() {
-			return it0006;
-		}
-		
-		boolean isDataChanged() {
-			return isDataChanged;
-		}
-	}
-	
 	public IT0006RequestWrapper() {}
 	
-	public IT0006 compareAndBuildFromRequest(IT0006 it0006) {
-		this.requestBuilder = new IT0006RequestBuilder(it0006);
-		return this.requestBuilder.getUpdatedObject();
-	}
-	
-	public boolean isDataChanged() {
-		return this.requestBuilder.isDataChanged();
-	}
-
-	/**
-	 * Employee SSN (pernr).
-	 * 
-	 * @return
-	 */
-	@JsonProperty("ssn")
-	public long getPernr() {
-		return pernr;
-	}
-	
-	public void setPernr(long pernr) {
-		this.pernr = pernr;
-	}
-	
-	/**
-	 * Address Subtype.
-	 * 
-	 * @return
-	 */
-	@JsonProperty("address_subtype")
-	public String getSubty() {
-		return subty;
-	}
-	
-	public void setSubty(String subty) {
-		this.subty = subty;
-	}
-	
-	/**
-	 * End Date.
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	@JsonProperty("end_date")
-	public String getEndda() {
-		return endda;
-	}
-	
-	public void setEndda(String endda) {
-		this.endda = endda;
-	}
-	
-	/**
-	 * Begin Date.
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	@JsonProperty("begin_date")
-	public String getBegda() {
-		return begda;
-	}
-	
-	public void setBegda(String begda) {
-		this.begda = begda;
-	}
-
 	/**
 	 * Address Type.
 	 * 

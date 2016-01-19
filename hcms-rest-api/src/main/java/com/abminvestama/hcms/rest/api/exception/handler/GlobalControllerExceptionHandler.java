@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.abminvestama.hcms.core.exception.CannotPersistException;
 import com.abminvestama.hcms.rest.api.exception.dto.ExceptionResponseWrapper;
 import com.abminvestama.hcms.rest.api.exception.dto.ExceptionViewResolver;
 
@@ -46,6 +47,15 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
 		LOG.error("Authentication failed", e);
 		ExceptionResponseWrapper response = new ExceptionResponseWrapper("Authentication failed. Either missing or invalid token.",
 				HttpStatus.UNAUTHORIZED, HttpMethod.valueOf(req.getMethod()));
+		return generateViewResolver(req, new ExceptionViewResolver(response));
+	}
+	
+	@ExceptionHandler(CannotPersistException.class)
+	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+	public ModelAndView cannotPersistExceptionHandler(HttpServletRequest req, AuthenticationException e) {
+		LOG.error("Cannot persist data", e);
+		ExceptionResponseWrapper response = new ExceptionResponseWrapper("Cannot persist data. Either data corruption or internal error!",
+				HttpStatus.UNPROCESSABLE_ENTITY, HttpMethod.valueOf(req.getMethod()));
 		return generateViewResolver(req, new ExceptionViewResolver(response));
 	}
 	
