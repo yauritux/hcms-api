@@ -2,6 +2,9 @@ package com.abminvestama.hcms.core.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 import org.hibernate.annotations.Immutable;
 
 /**
@@ -11,12 +14,16 @@ import org.hibernate.annotations.Immutable;
  * @since 1.0.0
  *
  */
+@Embeddable
 @Immutable
 public class T535NKey implements Serializable {
 
 	private static final long serialVersionUID = -4473303792875149695L;
 
+	@Column(name = "art", nullable = false, length = 1)	
 	private String art;
+	
+	@Column(name = "title", nullable = false, length = 15)	
 	private String title;
 	
 	public T535NKey() {}
@@ -26,10 +33,20 @@ public class T535NKey implements Serializable {
 		this.title = title;
 	}
 	
+	/**
+	 * GET Name affix type (title's type).
+	 * 
+	 * @return
+	 */
 	public String getArt() {
 		return art;
 	}
 	
+	/**
+	 * GET name affix / title.
+	 * 
+	 * @return
+	 */
 	public String getTitle() {
 		return title;
 	}

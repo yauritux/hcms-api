@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 /**
@@ -18,18 +17,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "t535n")
-@IdClass(T535NKey.class)
 public class T535N implements Serializable {
 
 	private static final long serialVersionUID = -7457185428195703486L;
 	
 	@Id
-	@Column(name = "art", nullable = false, length = 1)
-	private String art;
-	
-	@Id
-	@Column(name = "title", nullable = false, length = 15)
-	private String title;
+	private T535NKey id;
 	
 	@Column(name = "duevo", nullable = true, length = 1)
 	private String duevo;
@@ -39,22 +32,18 @@ public class T535N implements Serializable {
 
 	public T535N() {}
 	
-	/**
-	 * GET Name affix type (title's type).
-	 * 
-	 * @return
-	 */
-	public String getArt() {
-		return art;
+	public T535N(T535NKey id) {
+		this();
+		this.id = id;
 	}
 	
 	/**
-	 * GET name affix / title.
+	 * GET ID.
 	 * 
 	 * @return
 	 */
-	public String getTitle() {
-		return title;
+	public T535NKey getId() {
+		return id;
 	}
 	
 	/**

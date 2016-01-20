@@ -13,12 +13,24 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class CommonComparatorFunction {
 
-	public static final boolean isDifferentStringValues(String field1, String field2) {
-		return (StringUtils.isNotBlank(field1) && !field1.trim().equalsIgnoreCase(field2 != null ? field2.trim() : ""));
+	public static final boolean isDifferentStringValues(String s1, String s2) {
+		return (StringUtils.isNotBlank(s1) && !s1.trim().equalsIgnoreCase(s2 != null ? s2.trim() : ""));
 	}
 	
-	public static final boolean isDifferentDateValues(Date field1, Date field2) {
-		return (field1 != null && field2 != null 
-				&& field1.compareTo(field2) == 0);
+	public static final boolean isDifferentDateValues(Date d1, Date d2) {
+		return (d1 != null && d2 != null 
+				&& d1.compareTo(d2) == 0);
+	}
+	
+	public static final boolean isDifferentCharacterValues(char c1, char c2) {
+		return c1 == c2;
+	}
+	
+	public static final boolean isDifferentFloatingPointNumberValues(Number n1, Number n2) {
+		return n1.doubleValue() == n2.doubleValue();
+	}
+	
+	public static final boolean isDifferentNumberValues(Number n1, Number n2) {
+		return n1.longValue() == n2.longValue();
 	}
 }
