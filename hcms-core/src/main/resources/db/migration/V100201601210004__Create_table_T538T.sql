@@ -1,0 +1,12 @@
+CREATE TABLE T538T (
+  ZEINH character(3) NOT NULL,
+  ETEXT character varying(255) NOT NULL
+);
+
+ALTER TABLE T538T ADD PRIMARY KEY (ZEINH);
+
+COMMENT ON TABLE T538T IS 'Master data Table for Unit of Time';
+
+COMMENT ON COLUMN T538T.ZEINH IS 'Unit of Time/Meas.';
+
+COMMENT ON COLUMN T538T.ETEXT IS 'Unit Text';
