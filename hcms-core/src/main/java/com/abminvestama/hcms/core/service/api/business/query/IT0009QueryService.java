@@ -7,7 +7,7 @@ import java.util.Optional;
 import javax.validation.constraints.NotNull;
 
 import com.abminvestama.hcms.core.model.entity.IT0009;
-import com.abminvestama.hcms.core.model.entity.IT0009Key;
+import com.abminvestama.hcms.core.model.entity.ITCompositeKeys;
 import com.abminvestama.hcms.core.service.api.DatabasePaginationQueryService;
 import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
 
@@ -18,7 +18,7 @@ import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
  * @since 1.0.0
  *
  */
-public interface IT0009QueryService extends DatabaseQueryService<IT0009, IT0009Key>, DatabasePaginationQueryService {
+public interface IT0009QueryService extends DatabaseQueryService<IT0009, ITCompositeKeys>, DatabasePaginationQueryService {
 
 	@NotNull
 	Optional<IT0009> findOneByCompositeKey(Long pernr, String subty, Date endda, Date begda);

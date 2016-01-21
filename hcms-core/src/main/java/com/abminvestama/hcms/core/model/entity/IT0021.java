@@ -59,7 +59,7 @@ public class IT0021 extends SAPAbstractEntity<ITCompositeKeys> {
 	private T005T fanat;
 	
 	@Column(name = "fasex")
-	private Character fasex;
+	private String fasex;
 	
 	@Column(name = "favor")
 	private String favor;
@@ -167,11 +167,11 @@ public class IT0021 extends SAPAbstractEntity<ITCompositeKeys> {
 	 * 
 	 * @return
 	 */
-	public Character getFasex() {
+	public String getFasex() {
 		return fasex;
 	}
 	
-	public void setFasex(Character fasex) {
+	public void setFasex(String fasex) {
 		this.fasex = fasex;
 	}
 	

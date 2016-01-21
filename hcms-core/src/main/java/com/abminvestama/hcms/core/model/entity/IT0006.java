@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "it0006")
-public class IT0006 extends SAPAbstractEntity<IT0006Key> {
+public class IT0006 extends SAPAbstractEntity<ITCompositeKeys> {
 
 	private static final long serialVersionUID = -589157851250104698L;
 
@@ -29,7 +29,7 @@ public class IT0006 extends SAPAbstractEntity<IT0006Key> {
 	
 	public IT0006() {}
 	
-	public IT0006(IT0006Key id) {
+	public IT0006(ITCompositeKeys id) {
 		this();
 		this.id = id;
 	}

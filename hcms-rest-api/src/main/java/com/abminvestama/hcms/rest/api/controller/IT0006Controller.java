@@ -158,7 +158,7 @@ public class IT0006Controller extends AbstractResource {
 					}
 				
 					if (!it0006.isPresent()) {
-						throw new CannotPersistException("Cannot update IT0006 data. Please check your data!");
+						throw new CannotPersistException("Cannot update IT0006 (Address) data. Please check your data!");
 					}				
 				
 					responseWrapper = new IT0006ResponseWrapper(it0006.get());

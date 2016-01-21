@@ -106,8 +106,8 @@ public class IT0021RequestBuilderUtil {
 				}
 			}
 			if (StringUtils.isNotBlank(requestPayload.getFasex())) {
-				if (CommonComparatorFunction.isDifferentCharacterValues(Character.valueOf(requestPayload.getFasex().charAt(0)), it0021DB.getFasex().charValue())) {
-					it0021DB.setFasex(requestPayload.getFasex().charAt(0));
+				if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getFasex(), it0021DB.getFasex())) {
+					it0021DB.setFasex(requestPayload.getFasex());
 					requestPayload.setIsDataChanged(true);
 				}
 			}

@@ -10,6 +10,7 @@ import org.springframework.validation.Validator;
 import com.abminvestama.hcms.common.util.CommonDateFunction;
 import com.abminvestama.hcms.rest.api.dto.request.IT0006RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.IT0009RequestWrapper;
+import com.abminvestama.hcms.rest.api.dto.request.IT0021RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.IT0185RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.ITRequestWrapper;
 
@@ -29,7 +30,8 @@ public class InfoTypeValidator implements Validator {
 	public boolean supports(Class<?> clazz) {
 		return IT0009RequestWrapper.class.equals(clazz)
 				|| IT0006RequestWrapper.class.equals(clazz)
-				|| IT0185RequestWrapper.class.equals(clazz);
+				|| IT0185RequestWrapper.class.equals(clazz)
+				|| IT0021RequestWrapper.class.equals(clazz);
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public final class CommonComparatorFunction {
 	
 	public static final boolean isDifferentDateValues(Date d1, Date d2) {
 		return (d1 != null && d2 != null 
-				&& d1.compareTo(d2) == 0);
+				&& d1.compareTo(d2) != 0);
 	}
 	
 	public static final boolean isDifferentCharacterValues(char c1, char c2) {

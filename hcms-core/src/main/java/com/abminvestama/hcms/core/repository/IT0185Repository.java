@@ -11,7 +11,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.abminvestama.hcms.core.model.entity.IT0185;
-import com.abminvestama.hcms.core.model.entity.IT0185Key;
+import com.abminvestama.hcms.core.model.entity.ITCompositeKeys;
 
 /**
  * 
@@ -20,7 +20,7 @@ import com.abminvestama.hcms.core.model.entity.IT0185Key;
  * @since 1.0.0
  *
  */
-public interface IT0185Repository extends CrudRepository<IT0185, IT0185Key> {
+public interface IT0185Repository extends CrudRepository<IT0185, ITCompositeKeys> {
 	
 	@Query("FROM IT0185 it0185 WHERE it0185.pernr = :pernr AND it0185.id.subty = :subty AND it0185.id.endda = :endda AND it0185.id.begda = :begda")
 	IT0185 findOneByCompositeKey(@Param("pernr") Long pernr, @Param("subty") String subty,

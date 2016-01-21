@@ -158,7 +158,7 @@ public class IT0009Controller extends AbstractResource {
 					}
 				
 					if (!it0009.isPresent()) {
-						throw new CannotPersistException("Cannot update IT0006 data. Please check your data!");
+						throw new CannotPersistException("Cannot update IT0009 (Bank Details) data. Please check your data!");
 					}
 				
 					responseWrapper = new IT0009ResponseWrapper(it0009.get());

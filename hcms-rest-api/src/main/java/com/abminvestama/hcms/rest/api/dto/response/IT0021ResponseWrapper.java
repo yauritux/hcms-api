@@ -30,7 +30,7 @@ public class IT0021ResponseWrapper extends ResourceSupport {
 	private Date fgbdt;
 	private String fgbld;
 	private String fanat;
-	private char fasex;
+	private String fasex;
 	private String favor;
 	private String fanam;
 	private String fgbot;
@@ -53,7 +53,7 @@ public class IT0021ResponseWrapper extends ResourceSupport {
 				.setFgbdt(it0021.getFgbdt() != null ? it0021.getFgbdt() : null)
 				.setFgbld(it0021.getFgbld() != null ? StringUtils.defaultString(it0021.getFgbld().getLandx(), it0021.getFgbld().getLand1()) : "")
 				.setFanat(it0021.getFanat() != null ? StringUtils.defaultString(it0021.getFanat().getLandx(), it0021.getFanat().getLand1()) : "")
-				.setFasex(it0021.getFasex() != null ? it0021.getFasex().charValue() : null)
+				.setFasex(StringUtils.defaultString(it0021.getFasex(), ""))
 				.setFavor(StringUtils.defaultString(it0021.getFavor(), ""))
 				.setFanam(StringUtils.defaultString(it0021.getFanam(), ""))
 				.setFgbot(StringUtils.defaultString(it0021.getFgbot(), ""))
@@ -190,11 +190,11 @@ public class IT0021ResponseWrapper extends ResourceSupport {
 	 * @return
 	 */
 	@JsonProperty("gender")
-	public char getFasex() {
+	public String getFasex() {
 		return fasex;
 	}
 	
-	private IT0021ResponseWrapper setFasex(char fasex) {
+	private IT0021ResponseWrapper setFasex(String fasex) {
 		this.fasex = fasex;
 		return this;
 	}

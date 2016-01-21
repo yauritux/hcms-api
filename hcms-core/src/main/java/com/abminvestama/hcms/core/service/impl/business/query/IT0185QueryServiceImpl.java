@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.abminvestama.hcms.core.model.entity.IT0185;
-import com.abminvestama.hcms.core.model.entity.IT0185Key;
+import com.abminvestama.hcms.core.model.entity.ITCompositeKeys;
 import com.abminvestama.hcms.core.repository.IT0185Repository;
 import com.abminvestama.hcms.core.service.api.business.query.IT0185QueryService;
 
@@ -35,7 +35,7 @@ public class IT0185QueryServiceImpl implements IT0185QueryService {
 	}
 
 	@Override
-	public Optional<IT0185> findById(Optional<IT0185Key> id) throws Exception {
+	public Optional<IT0185> findById(Optional<ITCompositeKeys> id) throws Exception {
 		throw new NoSuchMethodException("Method not implemented. Please use method findOneByCompositeKeys instead.");
 	}
 

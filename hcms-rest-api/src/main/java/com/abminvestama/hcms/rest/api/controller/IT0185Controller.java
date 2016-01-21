@@ -158,7 +158,7 @@ public class IT0185Controller extends AbstractResource {
 					}
 				
 					if (!it0185.isPresent()) {
-						throw new CannotPersistException("Cannot update IT0006 data. Please check your data!");
+						throw new CannotPersistException("Cannot update IT0185 (Personal ID) data. Please check your data!");
 					}
 				
 					responseWrapper = new IT0185ResponseWrapper(it0185.get());

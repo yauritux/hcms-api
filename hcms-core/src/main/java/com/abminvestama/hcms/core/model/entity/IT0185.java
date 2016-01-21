@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "it0185")
-public class IT0185 extends SAPAbstractEntity<IT0185Key> {
+public class IT0185 extends SAPAbstractEntity<ITCompositeKeys> {
 
 	private static final long serialVersionUID = 601435978623702194L;
 	
@@ -32,7 +32,7 @@ public class IT0185 extends SAPAbstractEntity<IT0185Key> {
 	
 	public IT0185() {}
 	
-	public IT0185(IT0185Key id) {
+	public IT0185(ITCompositeKeys id) {
 		this();
 		this.id = id;
 	}
