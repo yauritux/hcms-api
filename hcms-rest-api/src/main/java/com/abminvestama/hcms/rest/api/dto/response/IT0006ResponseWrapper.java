@@ -25,6 +25,8 @@ public class IT0006ResponseWrapper extends ResourceSupport {
 	
 	private String subty;
 	
+	private String subtyText;
+	
 	private Date endda;
 	
 	private Date begda;
@@ -65,7 +67,8 @@ public class IT0006ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 				.setPernr(it0006.getId().getPernr())
-				.setSubty(it0006.getSubty() != null ? it0006.getSubty().getStext() : it0006.getId().getSubty())
+				.setSubty(it0006.getSubty() != null ? it0006.getSubty().getSubty() : "")
+				.setSubtyText(it0006.getSubty() != null ? it0006.getSubty().getStext() : "")
 				.setEndda(it0006.getId().getEndda()).setBegda(it0006.getId().getBegda())
 				.setAedtm(it0006.getAedtm()).setUname(it0006.getUname())
 				.setAnssa(it0006.getAnssa()).setName2(it0006.getName2())
@@ -106,6 +109,21 @@ public class IT0006ResponseWrapper extends ResourceSupport {
 	
 	private IT0006ResponseWrapper setSubty(String subty) {
 		this.subty = subty;
+		return this;
+	}
+	
+	/**
+	 * Address Subtype Text.
+	 * 
+	 * @return
+	 */
+	@JsonProperty("subty_text")
+	public String getSubtyText() {
+		return subtyText;
+	}
+	
+	private IT0006ResponseWrapper setSubtyText(String subtyText) {
+		this.subtyText = subtyText;
 		return this;
 	}
 	
