@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abminvestama.hcms.common.util.CommonDateFunction;
@@ -109,6 +110,36 @@ public class IT0006Controller extends AbstractResource {
 
 		response.setData(it0006Response);
 		response.add(linkTo(methodOn(IT0006Controller.class).findOneByPernr(pernr)).withSelfRel());
+		return response;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
+	public APIResponseWrapper<IT0006ResponseWrapper> findOneByPernrAndSubty(
+			@RequestParam("pernr") String pernr, @RequestParam(required = false, defaultValue = "1") String subty) throws Exception {
+		
+		IT0006ResponseWrapper it0006Response = null;
+		APIResponseWrapper<IT0006ResponseWrapper> response = new APIResponseWrapper<>();
+		
+		try {
+			Long numOfPernr = Long.valueOf(pernr);
+			
+			List<IT0006> listOfIT0006 = it0006QueryService.findByPernrAndSubty(numOfPernr, subty).stream().collect(Collectors.toList());
+			
+			if (listOfIT0006.isEmpty()) {
+				it0006Response = new IT0006ResponseWrapper(null);
+				response.setMessage("No Data Found");
+			} else {
+				IT0006 it0006 = listOfIT0006.get(0);
+				it0006Response = new IT0006ResponseWrapper(it0006);
+			}
+		} catch (NumberFormatException nfe) { 
+			throw nfe;
+		} catch (Exception e) {
+			throw e;
+		}
+		
+		response.setData(it0006Response);
+		response.add(linkTo(methodOn(IT0006Controller.class).findOneByPernrAndSubty(pernr, subty)).withSelfRel());
 		return response;
 	}
 	
