@@ -58,7 +58,7 @@ public class IT0021RequestBuilderUtil {
 	 * @param it0021DB current existing IT0021 in the database.
 	 * @return updated IT0021 object to be persisted into the database.
 	 */
-	public final RequestObjectComparatorContainer<IT0021, IT0021RequestWrapper> compareAndReturnUpdatedData(IT0021RequestWrapper requestPayload, IT0021 it0021DB) {
+	public RequestObjectComparatorContainer<IT0021, IT0021RequestWrapper> compareAndReturnUpdatedData(IT0021RequestWrapper requestPayload, IT0021 it0021DB) {
 		if (it0021DB == null) {
 			it0021DB = new IT0021();
 		} else {

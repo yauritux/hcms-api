@@ -28,7 +28,7 @@ public class IT0006RequestBuilderUtil {
 	 * @param it0006DB current existing IT0006 in the database.
 	 * @return updated IT0006 object to be persisted into the database.
 	 */
-	public final RequestObjectComparatorContainer<IT0006, IT0006RequestWrapper> compareAndReturnUpdatedData(IT0006RequestWrapper requestPayload, IT0006 it0006DB) {
+	public RequestObjectComparatorContainer<IT0006, IT0006RequestWrapper> compareAndReturnUpdatedData(IT0006RequestWrapper requestPayload, IT0006 it0006DB) {
 		if (it0006DB == null) {
 			it0006DB = new IT0006();
 		} else {

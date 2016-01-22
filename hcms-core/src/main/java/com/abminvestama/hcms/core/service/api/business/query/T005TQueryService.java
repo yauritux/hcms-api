@@ -1,6 +1,7 @@
 package com.abminvestama.hcms.core.service.api.business.query;
 
 import com.abminvestama.hcms.core.model.entity.T005T;
+import com.abminvestama.hcms.core.service.api.DatabasePaginationQueryService;
 import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
 
 /**
@@ -10,5 +11,5 @@ import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
  * @since 1.0.0
  *
  */
-public interface T005TQueryService extends DatabaseQueryService<T005T, String> {
+public interface T005TQueryService extends DatabaseQueryService<T005T, String>, DatabasePaginationQueryService {
 }

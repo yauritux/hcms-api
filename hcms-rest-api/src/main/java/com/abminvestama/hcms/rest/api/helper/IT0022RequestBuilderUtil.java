@@ -80,7 +80,7 @@ public class IT0022RequestBuilderUtil {
 	 * @param it0021DB current existing IT0022 in the database.
 	 * @return updated IT0022 object to be persisted into the database.
 	 */
-	public final RequestObjectComparatorContainer<IT0022, IT0022RequestWrapper> compareAndReturnUpdatedData(IT0022RequestWrapper requestPayload, IT0022 it0022DB) {
+	public RequestObjectComparatorContainer<IT0022, IT0022RequestWrapper> compareAndReturnUpdatedData(IT0022RequestWrapper requestPayload, IT0022 it0022DB) {
 		if (it0022DB == null) {
 			it0022DB = new IT0022();
 		} else {
@@ -107,7 +107,7 @@ public class IT0022RequestBuilderUtil {
 			if (StringUtils.isNotBlank(requestPayload.getSland())) {
 				if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getSland(), it0022DB.getSland() != null ? it0022DB.getSland().getLand1() : StringUtils.EMPTY)) {
 					try {
-						Optional<T005T> newT005T = t005tQueryService.findById(Optional.ofNullable(requestPayload.getSland()));
+						Optional<T005T> newT005T = t005tQueryService.findById(Optional.ofNullable(requestPayload.getSland().trim()));
 						if (newT005T.isPresent()) {
 							it0022DB.setSland(newT005T.get());
 							requestPayload.setIsDataChanged(true);

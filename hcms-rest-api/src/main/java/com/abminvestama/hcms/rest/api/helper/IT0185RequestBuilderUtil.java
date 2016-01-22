@@ -49,7 +49,7 @@ public class IT0185RequestBuilderUtil {
 	 * @param it0185DB current existing IT0185 in the database.
 	 * @return updated IT0185 object to be persisted into the database.
 	 */
-	public final RequestObjectComparatorContainer<IT0185, IT0185RequestWrapper> compareAndReturnUpdatedData(IT0185RequestWrapper requestPayload, IT0185 it0185DB) {
+	public RequestObjectComparatorContainer<IT0185, IT0185RequestWrapper> compareAndReturnUpdatedData(IT0185RequestWrapper requestPayload, IT0185 it0185DB) {
 		if (it0185DB == null) {
 			it0185DB = new IT0185();
 		} else {

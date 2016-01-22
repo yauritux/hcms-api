@@ -34,7 +34,7 @@ public class IT0022QueryServiceImpl implements IT0022QueryService {
 	@Autowired
 	IT0022QueryServiceImpl(IT0022Repository it0022Repository) {
 		this.it0022Repository = it0022Repository;
-	}
+	}	
 	
 	@Override
 	public Optional<IT0022> findById(Optional<ITCompositeKeys> id) throws Exception {
