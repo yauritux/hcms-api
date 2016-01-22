@@ -109,7 +109,7 @@ public class IT0021Controller extends AbstractResource {
 		}
 
 		response.setData(it0021Response);
-		response.add(linkTo(methodOn(IT0185Controller.class).findOneByPernr(pernr)).withSelfRel());
+		response.add(linkTo(methodOn(IT0021Controller.class).findOneByPernr(pernr)).withSelfRel());
 		return response;
 	}	
 	

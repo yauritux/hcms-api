@@ -37,22 +37,38 @@ public class IT0022 extends SAPAbstractEntity<ITCompositeKeys> {
 	@Column(name = "seqnr")
 	private Long seqnr;
 	
+	@ManyToOne
+	@JoinColumn(name = "slart", referencedColumnName = "slart")
 	private T517T slart;
 	
+	@Column(name = "insti")
 	private String insti;
 	
+	@ManyToOne
+	@JoinColumn(name = "sland", referencedColumnName = "land1")
 	private T005T sland;
 	
+	@ManyToOne
+	@JoinColumn(name = "ausbi", referencedColumnName = "ausbi")
 	private T518B ausbi;
 	
+	@ManyToOne
+	@JoinColumn(name = "slabs", referencedColumnName = "slabs")
 	private T519T slabs;
 	
+	@Column(name = "anzkl")
 	private Double anzkl;
 	
+	@ManyToOne
+	@JoinColumn(name = "anzeh", referencedColumnName = "zeinh")
 	private T538T anzeh;
 	
+	@ManyToOne
+	@JoinColumn(name = "sltp1", referencedColumnName = "faart")
 	private T517X sltp1;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "sltp2", referencedColumnName = "faart")	
 	private T517X sltp2;
 	
 	/**
