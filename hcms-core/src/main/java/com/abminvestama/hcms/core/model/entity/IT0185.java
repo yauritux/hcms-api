@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
  * @version 1.0.0
  * @since 1.0.0
  *
+ * Class that represents master data for <strong>Personal IDs</strong> (i.e. IT0185 in SAP).
  */
 @Entity
 @Table(name = "it0185")

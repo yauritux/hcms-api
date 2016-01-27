@@ -26,18 +26,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.abminvestama.hcms.common.util.CommonDateFunction;
 import com.abminvestama.hcms.core.exception.CannotPersistException;
-import com.abminvestama.hcms.core.model.entity.IT0022;
+import com.abminvestama.hcms.core.model.entity.IT0023;
 import com.abminvestama.hcms.core.model.entity.User;
-import com.abminvestama.hcms.core.service.api.business.command.IT0022CommandService;
-import com.abminvestama.hcms.core.service.api.business.query.IT0022QueryService;
+import com.abminvestama.hcms.core.service.api.business.command.IT0023CommandService;
+import com.abminvestama.hcms.core.service.api.business.query.IT0023QueryService;
 import com.abminvestama.hcms.core.service.api.business.query.UserQueryService;
 import com.abminvestama.hcms.rest.api.dto.helper.RequestObjectComparatorContainer;
-import com.abminvestama.hcms.rest.api.dto.request.IT0022RequestWrapper;
+import com.abminvestama.hcms.rest.api.dto.request.IT0023RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.response.APIResponseWrapper;
 import com.abminvestama.hcms.rest.api.dto.response.ArrayData;
-import com.abminvestama.hcms.rest.api.dto.response.IT0022ResponseWrapper;
+import com.abminvestama.hcms.rest.api.dto.response.IT0023ResponseWrapper;
 import com.abminvestama.hcms.rest.api.exception.dto.ExceptionResponseWrapper;
-import com.abminvestama.hcms.rest.api.helper.IT0022RequestBuilderUtil;
+import com.abminvestama.hcms.rest.api.helper.IT0023RequestBuilderUtil;
 
 /**
  * 
@@ -47,61 +47,62 @@ import com.abminvestama.hcms.rest.api.helper.IT0022RequestBuilderUtil;
  *
  */
 @RestController
-@RequestMapping("/api/v1/education")
+@RequestMapping("/api/v1/employment_history")
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-public class IT0022Controller extends AbstractResource {
+public class IT0023Controller extends AbstractResource {
 	
-	private IT0022CommandService it0022CommandService;
-	private IT0022QueryService it0022QueryService;
+	private IT0023CommandService it0023CommandService;
+	private IT0023QueryService it0023QueryService;
 	
 	private Validator itValidator;
-	private IT0022RequestBuilderUtil it0022RequestBuilderUtil;
+	
+	private IT0023RequestBuilderUtil it0023RequestBuilderUtil;
+	
 	private UserQueryService userQueryService;
 	
 	@Autowired
-	void setIT0022CommandService(IT0022CommandService it0022CommandService) {
-		this.it0022CommandService = it0022CommandService;
+	void setIT0023CommandService(IT0023CommandService it0023CommandService) {
+		this.it0023CommandService = it0023CommandService;
 	}
 	
 	@Autowired
-	void setIT0022QueryService(IT0022QueryService it0022QueryService) {
-		this.it0022QueryService = it0022QueryService;
+	void setIT0023QueryService(IT0023QueryService it0023QueryService) {
+		this.it0023QueryService = it0023QueryService;
 	}
 	
 	@Autowired
-	@Qualifier("itValidator")	
+	@Qualifier("itNoSubtypeValidator")
 	void setITValidator(Validator itValidator) {
 		this.itValidator = itValidator;
 	}
 	
 	@Autowired
-	@Qualifier("it0022RequestBuilderUtil")
-	void setIT0022RequestBuilderUtil(IT0022RequestBuilderUtil it0022RequestBuilderUtil) {
-		this.it0022RequestBuilderUtil = it0022RequestBuilderUtil;
+	void setIT0023RequestBuilderUtil(IT0023RequestBuilderUtil it0023RequestBuilderUtil) {
+		this.it0023RequestBuilderUtil = it0023RequestBuilderUtil;
 	}
 	
 	@Autowired
 	void setUserQueryService(UserQueryService userQueryService) {
 		this.userQueryService = userQueryService;
 	}
-
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/ssn/{pernr}", 
 			headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
-	public APIResponseWrapper<IT0022ResponseWrapper> findOneByPernr(@PathVariable String pernr) throws Exception {
-		IT0022ResponseWrapper it0022Response = null;
-		APIResponseWrapper<IT0022ResponseWrapper> response = new APIResponseWrapper<>();
+	public APIResponseWrapper<IT0023ResponseWrapper> findOneByPernr(@PathVariable String pernr) throws Exception {
+		IT0023ResponseWrapper it0023Response = null;
+		APIResponseWrapper<IT0023ResponseWrapper> response = new APIResponseWrapper<>();
 		
 		try {
 			Long numOfPernr = Long.valueOf(pernr);
 			
-			List<IT0022> listOfIT0022 = it0022QueryService.findByPernr(numOfPernr).stream().collect(Collectors.toList());
+			List<IT0023> listOfIT0023 = it0023QueryService.findByPernr(numOfPernr).stream().collect(Collectors.toList());
 			
-			if (listOfIT0022.isEmpty()) {
-				it0022Response = new IT0022ResponseWrapper(null);
+			if (listOfIT0023.isEmpty()) {
+				it0023Response = new IT0023ResponseWrapper(null);
 				response.setMessage("No Data Found");
 			} else {
-				IT0022 it0022 = listOfIT0022.get(0);
-				it0022Response = new IT0022ResponseWrapper(it0022);
+				IT0023 it0023 = listOfIT0023.get(0);
+				it0023Response = new IT0023ResponseWrapper(it0023);
 			}
 		} catch (NumberFormatException nfe) {
 			throw nfe;
@@ -109,14 +110,14 @@ public class IT0022Controller extends AbstractResource {
 			throw e;
 		}
 
-		response.setData(it0022Response);
-		response.add(linkTo(methodOn(IT0022Controller.class).findOneByPernr(pernr)).withSelfRel());
+		response.setData(it0023Response);
+		response.add(linkTo(methodOn(IT0023Controller.class).findOneByPernr(pernr)).withSelfRel());
 		return response;
 	}	
 	
 	@RequestMapping(method = RequestMethod.PUT, headers = "Accept=application/json",
 			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public APIResponseWrapper<?> edit(@RequestBody @Validated IT0022RequestWrapper request, BindingResult result) throws Exception {
+	public APIResponseWrapper<?> edit(@RequestBody @Validated IT0023RequestWrapper request, BindingResult result) throws Exception {
 		APIResponseWrapper<?> response = null;
 		
 		if (result.hasErrors()) {
@@ -128,21 +129,21 @@ public class IT0022Controller extends AbstractResource {
 		} else {
 			boolean isDataChanged = false;
 			
-			IT0022ResponseWrapper responseWrapper = new IT0022ResponseWrapper(null);
+			IT0023ResponseWrapper responseWrapper = new IT0023ResponseWrapper(null);
 			
 			response = new APIResponseWrapper<>(responseWrapper);
 			
 			edit: {
 				try {
-					Optional<IT0022> it0022 = it0022QueryService.findOneByCompositeKey(request.getPernr(), request.getSubty(),
+					Optional<IT0023> it0023 = it0023QueryService.findOneByCompositeKey(request.getPernr(),
 							CommonDateFunction.convertDateRequestParameterIntoDate(request.getEndda()),
 							CommonDateFunction.convertDateRequestParameterIntoDate(request.getBegda()));
-					if (!it0022.isPresent()) {
+					if (!it0023.isPresent()) {
 						response.setMessage("Cannot update data. No Data Found!");
 						break edit;
 					}
 				
-					RequestObjectComparatorContainer<IT0022, IT0022RequestWrapper> updatedContainer = it0022RequestBuilderUtil.compareAndReturnUpdatedData(request, it0022.get());
+					RequestObjectComparatorContainer<IT0023, IT0023RequestWrapper> updatedContainer = it0023RequestBuilderUtil.compareAndReturnUpdatedData(request, it0023.get());
 
 					if (updatedContainer.getRequestPayload().isPresent()) {
 						isDataChanged = updatedContainer.getRequestPayload().get().isDataChanged();
@@ -156,14 +157,14 @@ public class IT0022Controller extends AbstractResource {
 					Optional<User> currentUser = userQueryService.findByUsername(currentUser());
 				
 					if (updatedContainer.getEntity().isPresent()) {
-						it0022 = it0022CommandService.save(updatedContainer.getEntity().get(), currentUser.isPresent() ? currentUser.get() : null);
+						it0023 = it0023CommandService.save(updatedContainer.getEntity().get(), currentUser.isPresent() ? currentUser.get() : null);
 					}
 				
-					if (!it0022.isPresent()) {
-						throw new CannotPersistException("Cannot update IT0022 (Educational Info) data. Please check your data!");
+					if (!it0023.isPresent()) {
+						throw new CannotPersistException("Cannot update IT0023 (Employment History) data. Please check your data!");
 					}
 				
-					responseWrapper = new IT0022ResponseWrapper(it0022.get());
+					responseWrapper = new IT0023ResponseWrapper(it0023.get());
 					response = new APIResponseWrapper<>(responseWrapper);
 				
 				} catch (NullPointerException nfe) { 
@@ -174,12 +175,12 @@ public class IT0022Controller extends AbstractResource {
 			}
 		}
 		
-		response.add(linkTo(methodOn(IT0022Controller.class).edit(request, result)).withSelfRel());
+		response.add(linkTo(methodOn(IT0023Controller.class).edit(request, result)).withSelfRel());
 		return response;
 	}	
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		binder.addValidators(itValidator);
-	}			
+	}	
 }

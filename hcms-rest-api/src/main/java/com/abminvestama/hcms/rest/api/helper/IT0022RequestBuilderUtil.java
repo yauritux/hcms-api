@@ -73,11 +73,11 @@ public class IT0022RequestBuilderUtil {
 	}
 
 	/**
-	 * Compare IT0022 request payload with existing IT0022 in the database.
-	 * Update existing IT0022 data with the latest data comes from the request payload. 
+	 * Compare IT0022 requested payload with an existing IT0022 in the database.
+	 * Update the existing IT0022 data with the latest data comes from the requested payload. 
 	 * 
-	 * @param requestPayload request data 
-	 * @param it0021DB current existing IT0022 in the database.
+	 * @param requestPayload requested data 
+	 * @param it0022DB current existing IT0022 in the database.
 	 * @return updated IT0022 object to be persisted into the database.
 	 */
 	public RequestObjectComparatorContainer<IT0022, IT0022RequestWrapper> compareAndReturnUpdatedData(IT0022RequestWrapper requestPayload, IT0022 it0022DB) {

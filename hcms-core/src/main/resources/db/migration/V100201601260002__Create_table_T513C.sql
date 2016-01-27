@@ -1,0 +1,12 @@
+CREATE TABLE T513C (
+  TAETE bigint NOT NULL,
+  LTEXT character varying(255) NOT NULL
+);
+
+ALTER TABLE T513C ADD PRIMARY KEY (TAETE);
+
+COMMENT ON TABLE T513C IS 'Master data table for Job Role/Description';
+
+COMMENT ON COLUMN T513C.TAETE IS 'Job Key/ID';
+
+COMMENT ON COLUMN T513C.LTEXT IS 'Job Name/Description';
