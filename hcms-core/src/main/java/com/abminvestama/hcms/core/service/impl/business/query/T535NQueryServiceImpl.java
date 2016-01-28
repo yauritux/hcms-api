@@ -50,4 +50,13 @@ public class T535NQueryServiceImpl implements T535NQueryService {
 			return listOfT535N;
 		});
 	}
+
+	@Override
+	public Optional<T535N> findOneByCompositeKey(String art, String title) {
+		if (art == null || title == null) {
+			return Optional.empty();
+		}
+		
+		return Optional.ofNullable(t535nRepository.findOneByCompositeKey(art, title));		
+	}
 }

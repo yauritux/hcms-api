@@ -8,6 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.abminvestama.hcms.common.util.CommonDateFunction;
+import com.abminvestama.hcms.rest.api.dto.request.IT0002RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.IT0023RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.ITRequestWrapper;
 
@@ -25,7 +26,8 @@ public class InfoTypeNoSubtypeValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return IT0023RequestWrapper.class.equals(clazz);
+		return IT0023RequestWrapper.class.equals(clazz)
+				|| IT0002RequestWrapper.class.equals(clazz);
 	}
 
 	@Override

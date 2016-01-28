@@ -1,0 +1,1 @@
+ALTER TABLE IT0002 ALTER COLUMN uname TYPE character varying(255);

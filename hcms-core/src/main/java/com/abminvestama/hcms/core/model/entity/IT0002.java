@@ -1,12 +1,9 @@
 package com.abminvestama.hcms.core.model.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -25,34 +22,22 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "it0002")
-@IdClass(IT0002Key.class)
-public class IT0002 implements Serializable {
+public class IT0002 extends SAPAbstractEntity<ITCompositeKeysNoSubtype> {
 
 	private static final long serialVersionUID = 2496232738510047249L;
 
-	@Id
-	@Column(name = "pernr", nullable = false)
+	@Column(name = "pernr", nullable = false, insertable = false, updatable = false)
 	private Long pernr;
 	
-	@Id
-	@Temporal(TemporalType.DATE)
-	@Column(name = "endda", nullable = false)
-	private Date endda;
+	public IT0002() {}
 	
-	@Id
-	@Temporal(TemporalType.DATE)
-	@Column(name = "begda", nullable = false)
-	private Date begda;
+	public IT0002(ITCompositeKeysNoSubtype id) {
+		this();
+		this.id = id;
+	}
 	
 	@Column(name = "seqnr", nullable = false)
 	private Long seqnr;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "aedtm", nullable = false)
-	private Date aedtm;
-	
-	@Column(name = "uname", nullable = false, length = 15)
-	private String uname;
 	
 	@Column(name = "nachn", nullable = true, length = 40)
 	private String nachn;
@@ -124,8 +109,6 @@ public class IT0002 implements Serializable {
 	@Column(name = "anzkd")
 	private Byte anzkd;
 	
-	public IT0002() {}
-	
 	/**
 	 * GET Employee Personnel No. (Employee ID).
 	 * 
@@ -135,22 +118,8 @@ public class IT0002 implements Serializable {
 		return pernr;
 	}
 	
-	/**
-	 * 
-	 * GET End Date.
-	 * @return
-	 */
-	public Date getEndda() {
-		return endda;
-	}
-	
-	/**
-	 * GET Begin Date.
-	 * 
-	 * @return
-	 */
-	public Date getBegda() {
-		return begda;
+	public void setPernr(Long pernr) {
+		this.pernr = pernr;
 	}
 	
 	/**
@@ -162,22 +131,8 @@ public class IT0002 implements Serializable {
 		return seqnr;
 	}
 	
-	/**
-	 * GET Changed On. (i.e. Last time record was changed.)
-	 * 
-	 * @return
-	 */
-	public Date getAedtm() {
-		return aedtm;
-	}
-	
-	/**
-	 * GET Changed By. (i.e. last changed by user)
-	 * 
-	 * @return
-	 */
-	public String getUname() {
-		return uname;
+	public void setSeqnr(Long seqnr) {
+		this.seqnr = seqnr;
 	}
 	
 	/**
@@ -189,6 +144,10 @@ public class IT0002 implements Serializable {
 		return nachn;
 	}
 	
+	public void setNachn(String nachn) {
+		this.nachn = nachn;
+	}
+	
 	/**
 	 * GET Full Name.
 	 * 
@@ -196,6 +155,10 @@ public class IT0002 implements Serializable {
 	 */
 	public String getCname() {
 		return cname;
+	}
+	
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 	
 	/**
@@ -207,6 +170,10 @@ public class IT0002 implements Serializable {
 		return title;
 	}
 	
+	public void setTitle(T535N title) {
+		this.title = title;
+	}
+	
 	/**
 	 * GET Second Title.
 	 * 
@@ -214,6 +181,10 @@ public class IT0002 implements Serializable {
 	 */
 	public T535N getTitl2() {
 		return titl2;
+	}
+	
+	public void setTitl2(T535N titl2) {
+		this.titl2 = titl2;
 	}
 	
 	/**
@@ -225,6 +196,10 @@ public class IT0002 implements Serializable {
 		return namzu;
 	}
 	
+	public void setNamzu(T535N namzu) {
+		this.namzu = namzu;
+	}
+	
 	/**
 	 * GET Nick name.
 	 * 
@@ -232,6 +207,10 @@ public class IT0002 implements Serializable {
 	 */
 	public String getRufnm() {
 		return rufnm;
+	}
+	
+	public void setRufnm(String rufnm) {
+		this.rufnm = rufnm;
 	}
 	
 	/**
@@ -243,6 +222,10 @@ public class IT0002 implements Serializable {
 		return knznm;
 	}
 	
+	public void setKnznm(String knznm) {
+		this.knznm = knznm;
+	}
+	
 	/**
 	 * GET Form-of-address key.
 	 * 
@@ -250,6 +233,10 @@ public class IT0002 implements Serializable {
 	 */
 	public T522G getAnred() {
 		return anred;
+	}
+	
+	public void setAnred(T522G anred) {
+		this.anred = anred;
 	}
 	
 	/**
@@ -261,6 +248,10 @@ public class IT0002 implements Serializable {
 		return gesch;
 	}
 	
+	public void setGesch(String gesch) {
+		this.gesch = gesch;
+	}
+	
 	/**
 	 * GET Date of birth.
 	 * 
@@ -268,6 +259,10 @@ public class IT0002 implements Serializable {
 	 */
 	public Date getGbdat() {
 		return gbdat;
+	}
+	
+	public void setGbdat(Date gbdat) {
+		this.gbdat = gbdat;
 	}
 	
 	/**
@@ -279,6 +274,10 @@ public class IT0002 implements Serializable {
 		return gblnd;
 	}
 	
+	public void setGblnd(T005T gblnd) {
+		this.gblnd = gblnd;
+	}
+	
 	/**
 	 * GET Birthplace.
 	 * 
@@ -286,6 +285,10 @@ public class IT0002 implements Serializable {
 	 */
 	public String getGbort() {
 		return gbort;
+	}
+	
+	public void setGbort(String gbort) {
+		this.gbort = gbort;
 	}
 	
 	/**
@@ -297,6 +300,10 @@ public class IT0002 implements Serializable {
 		return sprsl;
 	}
 	
+	public void setSprsl(T002T sprsl) {
+		this.sprsl = sprsl;
+	}
+	
 	/**
 	 * GET Religion.
 	 * 
@@ -304,6 +311,10 @@ public class IT0002 implements Serializable {
 	 */
 	public T516T getKonfe() {
 		return konfe;
+	}
+	
+	public void setKonfe(T516T konfe) {
+		this.konfe = konfe;
 	}
 	
 	/**
@@ -315,6 +326,10 @@ public class IT0002 implements Serializable {
 		return famst;
 	}
 	
+	public void setFamst(T502T famst) {
+		this.famst = famst;
+	}
+	
 	/**
 	 * GET Marrital Status Since.
 	 * 
@@ -324,6 +339,10 @@ public class IT0002 implements Serializable {
 		return famdt;
 	}
 	
+	public void setFamdt(Date famdt) {
+		this.famdt = famdt;
+	}
+	
 	/**
 	 * GET Number of Children.
 	 * 
@@ -331,5 +350,9 @@ public class IT0002 implements Serializable {
 	 */
 	public Byte getAnzkd() {
 		return anzkd;
+	}
+	
+	public void setAnzkd(Byte anzkd) {
+		this.anzkd = anzkd;
 	}
 }
