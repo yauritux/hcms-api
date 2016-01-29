@@ -178,6 +178,7 @@ public class IT2006ResponseWrapper extends ResourceSupport {
 	 * 
 	 * @return
 	 */
+	@JsonProperty("deduction")
 	public double getKverb() {
 		return kverb;
 	}

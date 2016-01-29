@@ -13,6 +13,7 @@ import com.abminvestama.hcms.rest.api.dto.request.IT0009RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.IT0021RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.IT0022RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.IT0185RequestWrapper;
+import com.abminvestama.hcms.rest.api.dto.request.IT2006RequestWrapper;
 import com.abminvestama.hcms.rest.api.dto.request.ITRequestWrapper;
 
 /**
@@ -33,7 +34,8 @@ public class InfoTypeValidator implements Validator {
 				|| IT0006RequestWrapper.class.equals(clazz)
 				|| IT0185RequestWrapper.class.equals(clazz)
 				|| IT0021RequestWrapper.class.equals(clazz)
-				|| IT0022RequestWrapper.class.equals(clazz);
+				|| IT0022RequestWrapper.class.equals(clazz)
+				|| IT2006RequestWrapper.class.equals(clazz);
 	}
 
 	@Override
