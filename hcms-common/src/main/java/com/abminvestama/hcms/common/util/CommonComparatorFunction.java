@@ -23,14 +23,14 @@ public final class CommonComparatorFunction {
 	}
 	
 	public static final boolean isDifferentCharacterValues(char c1, char c2) {
-		return c1 == c2;
+		return c1 != c2;
 	}
 	
 	public static final boolean isDifferentFloatingPointNumberValues(Number n1, Number n2) {
-		return n1.doubleValue() == n2.doubleValue();
+		return n1.doubleValue() != n2.doubleValue();
 	}
 	
 	public static final boolean isDifferentNumberValues(Number n1, Number n2) {
-		return n1.longValue() == n2.longValue();
+		return n1.longValue() != n2.longValue();
 	}
 }

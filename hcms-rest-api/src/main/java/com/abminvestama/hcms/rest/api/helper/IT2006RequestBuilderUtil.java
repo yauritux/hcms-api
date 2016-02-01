@@ -46,21 +46,31 @@ public class IT2006RequestBuilderUtil {
 			it2006DB = new IT2006();
 		} else {
 			
+			System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::ktart request = " + requestPayload.getKtart());
+			System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::ktart in DB = " + it2006DB.getKtart().getKtart().intValue());
 			if (requestPayload.getKtart() != 0) {
+				System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::ktart request is not equal to 0");
 				if (CommonComparatorFunction.isDifferentNumberValues(requestPayload.getKtart(), it2006DB.getKtart() != null ? it2006DB.getKtart().getKtart().intValue() : 0)) {
+					System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::ktart is changed");
 					try {
 						Optional<T556B> newT556B = t556bQueryService.findById(Optional.ofNullable(requestPayload.getKtart()));
 						if (newT556B.isPresent()) {
+							System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::existing data found, updating ktart value in DB...");
 							it2006DB.setKtart(newT556B.get());
 							requestPayload.setIsDataChanged(true);
 						}
 					} catch (Exception e) {
+						System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::exception is thrown on ktart section, error=" + e.getMessage());
+						e.printStackTrace();
 						//T517T not found... cancel the update process
 					}
 				}
 			}
 			
+			System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::anzhl request = " + requestPayload.getAnzhl());
+			System.out.println("IT2006RequestBuilderUtil::compareAndReturnupdatedData::anzhl in DB = " + it2006DB.getAnzhl().doubleValue());
 			if (CommonComparatorFunction.isDifferentNumberValues(requestPayload.getAnzhl(), it2006DB.getAnzhl() != null ? it2006DB.getAnzhl().doubleValue() : 0.0)) {
+				System.out.println("IT2006RequestBuilderUtil::compareAndReturnUpdatedData::anzhl is changed");
 				it2006DB.setAnzhl(requestPayload.getAnzhl());
 				requestPayload.setIsDataChanged(true);
 			}
