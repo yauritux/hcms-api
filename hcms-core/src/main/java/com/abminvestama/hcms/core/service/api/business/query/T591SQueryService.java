@@ -1,6 +1,7 @@
 package com.abminvestama.hcms.core.service.api.business.query;
 
 import com.abminvestama.hcms.core.model.entity.T591S;
+import com.abminvestama.hcms.core.model.entity.T591SKey;
 import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
 
 /**
@@ -10,5 +11,5 @@ import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
  * @since 1.0.0
  *
  */
-public interface T591SQueryService extends DatabaseQueryService<T591S, String> {
+public interface T591SQueryService extends DatabaseQueryService<T591S, T591SKey> {
 }

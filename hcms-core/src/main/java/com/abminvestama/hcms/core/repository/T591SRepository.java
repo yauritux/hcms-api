@@ -3,6 +3,7 @@ package com.abminvestama.hcms.core.repository;
 import org.springframework.data.repository.CrudRepository;
 
 import com.abminvestama.hcms.core.model.entity.T591S;
+import com.abminvestama.hcms.core.model.entity.T591SKey;
 
 /**
  * 
@@ -11,5 +12,5 @@ import com.abminvestama.hcms.core.model.entity.T591S;
  * @since 1.0.0
  *
  */
-public interface T591SRepository extends CrudRepository<T591S, String> {
+public interface T591SRepository extends CrudRepository<T591S, T591SKey> {
 }

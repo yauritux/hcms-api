@@ -52,7 +52,10 @@ public class IT0022ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 				.setPernr(it0022.getId().getPernr())
-				.setSubty(it0022.getSubty() != null ? StringUtils.defaultString(it0022.getSubty().getSubty(), StringUtils.EMPTY) : it0022.getId().getSubty())
+				.setSubty(it0022.getSubty() != null ? 
+						StringUtils.defaultString(it0022.getSubty().getId() != null ? it0022.getSubty().getId().getSubty() : StringUtils.EMPTY, 
+								StringUtils.EMPTY) 
+						: it0022.getId().getSubty())
 				.setEndda(it0022.getId().getEndda()).setBegda(it0022.getId().getBegda())
 				.setSubtyText(it0022.getSubty() != null ? StringUtils.defaultString(it0022.getSubty().getStext(), StringUtils.EMPTY) : it0022.getId().getSubty())
 				.setSlart(it0022.getSlart() != null ? StringUtils.defaultString(it0022.getSlart().getSlart(), StringUtils.EMPTY) : StringUtils.EMPTY)

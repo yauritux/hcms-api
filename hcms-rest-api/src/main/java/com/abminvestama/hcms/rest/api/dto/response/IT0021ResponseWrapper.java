@@ -23,6 +23,7 @@ public class IT0021ResponseWrapper extends ResourceSupport {
 
 	private long pernr;
 	private String subty;
+	private String subtyText;
 	private Date endda;
 	private Date begda;
 	
@@ -47,20 +48,24 @@ public class IT0021ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 				.setPernr(it0021.getId().getPernr())
-				.setSubty(it0021.getSubty() != null ? StringUtils.defaultString(it0021.getSubty().getStext(), "") : it0021.getId().getSubty())
+				.setSubty(it0021.getSubty() != null ? 
+						StringUtils.defaultString(it0021.getSubty().getId() != null ? it0021.getSubty().getId().getSubty() :  StringUtils.EMPTY, StringUtils.EMPTY) 
+						: it0021.getId().getSubty())
+				.setSubtyText(it0021.getSubty() != null ? StringUtils.defaultString(it0021.getSubty().getStext(), StringUtils.EMPTY) : StringUtils.EMPTY)
 				.setEndda(it0021.getId().getEndda()).setBegda(it0021.getId().getBegda())
-				.setFamsa(it0021.getFamsa() != null ? StringUtils.defaultString(it0021.getFamsa().getStext(), it0021.getFamsa().getSubty()) : "")
+				.setFamsa(it0021.getFamsa() != null ? StringUtils.defaultString(it0021.getFamsa().getStext(), 
+						it0021.getFamsa().getId() != null ? it0021.getFamsa().getId().getSubty() : StringUtils.EMPTY) : StringUtils.EMPTY)
 				.setFgbdt(it0021.getFgbdt() != null ? it0021.getFgbdt() : null)
-				.setFgbld(it0021.getFgbld() != null ? StringUtils.defaultString(it0021.getFgbld().getLandx(), it0021.getFgbld().getLand1()) : "")
-				.setFanat(it0021.getFanat() != null ? StringUtils.defaultString(it0021.getFanat().getLandx(), it0021.getFanat().getLand1()) : "")
-				.setFasex(StringUtils.defaultString(it0021.getFasex(), ""))
-				.setFavor(StringUtils.defaultString(it0021.getFavor(), ""))
-				.setFanam(StringUtils.defaultString(it0021.getFanam(), ""))
-				.setFgbot(StringUtils.defaultString(it0021.getFgbot(), ""))
-				.setFcnam(StringUtils.defaultString(it0021.getFcnam(), ""))
+				.setFgbld(it0021.getFgbld() != null ? StringUtils.defaultString(it0021.getFgbld().getLandx(), it0021.getFgbld().getLand1()) : StringUtils.EMPTY)
+				.setFanat(it0021.getFanat() != null ? StringUtils.defaultString(it0021.getFanat().getLandx(), it0021.getFanat().getLand1()) : StringUtils.EMPTY)
+				.setFasex(StringUtils.defaultString(it0021.getFasex(), StringUtils.EMPTY))
+				.setFavor(StringUtils.defaultString(it0021.getFavor(), StringUtils.EMPTY))
+				.setFanam(StringUtils.defaultString(it0021.getFanam(), StringUtils.EMPTY))
+				.setFgbot(StringUtils.defaultString(it0021.getFgbot(), StringUtils.EMPTY))
+				.setFcnam(StringUtils.defaultString(it0021.getFcnam(), StringUtils.EMPTY))
 				.setFknzn(it0021.getFknzn() != null ? it0021.getFknzn().intValue() : 0)
-				.setFnmzu(it0021.getT535n() != null ? StringUtils.defaultString(it0021.getT535n().getId().getArt(), "") : "")
-				.setTitle(it0021.getT535n() != null ? StringUtils.defaultString(it0021.getT535n().getId().getTitle(), "") : "");
+				.setFnmzu(it0021.getT535n() != null ? StringUtils.defaultString(it0021.getT535n().getId().getArt(), StringUtils.EMPTY) : StringUtils.EMPTY)
+				.setTitle(it0021.getT535n() != null ? StringUtils.defaultString(it0021.getT535n().getId().getTitle(), StringUtils.EMPTY) : StringUtils.EMPTY);
 		}
 	}	
 	
@@ -91,6 +96,21 @@ public class IT0021ResponseWrapper extends ResourceSupport {
 	
 	private IT0021ResponseWrapper setSubty(String subty) {
 		this.subty = subty;
+		return this;
+	}
+	
+	/**
+	 * GET Subtype Name/Text.
+	 * 
+	 * @return
+	 */
+	@JsonProperty("subtype_text")
+	public String getSubtyText() {
+		return subtyText;
+	}
+	
+	private IT0021ResponseWrapper setSubtyText(String subtyText) {
+		this.subtyText = subtyText;
 		return this;
 	}
 	

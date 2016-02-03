@@ -26,6 +26,8 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	
 	private String subty;
 	
+	private String subtyText;
+	
 	private Date endda;
 	
 	private Date begda;
@@ -62,19 +64,21 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 				.setPernr(it0009.getId().getPernr())
-				.setSubty(it0009.getSubty() != null ? StringUtils.defaultString(it0009.getSubty().getStext(), "") : it0009.getId().getSubty())
+				.setSubty(it0009.getSubty() != null ? 
+						StringUtils.defaultString(it0009.getSubty().getId() != null ? it0009.getSubty().getId().getSubty() : StringUtils.EMPTY) : it0009.getId().getSubty())
+				.setSubtyText(it0009.getSubty() != null ? StringUtils.defaultString(it0009.getSubty().getStext(), StringUtils.EMPTY) : StringUtils.EMPTY)
 				.setEndda(it0009.getId().getEndda()).setBegda(it0009.getId().getBegda())
 				.setBetrg(it0009.getBetrg() != null ? it0009.getBetrg() : 0.0)
 				.setWaers(it0009.getWaers()).setAnzhl(it0009.getAnzhl() != null ? it0009.getAnzhl().doubleValue() : 0.0)
-				.setBnksa(it0009.getBnksa() != null ? StringUtils.defaultString(it0009.getBnksa().getStext(), "") : "")
-				.setZlsch(it0009.getZlsch() != null ? it0009.getZlsch().getText1() : "")
-				.setEmftx(StringUtils.defaultString(it0009.getEmftx(), ""))
-				.setBkplz(StringUtils.defaultString(it0009.getBkplz(), ""))
-				.setBkort(StringUtils.defaultString(it0009.getBkort(), ""))
-				.setBanks(it0009.getBanks() != null ? StringUtils.defaultString(it0009.getBanks().getLandx(), "") : "")
-				.setBankl(it0009.getBankl() != null ? StringUtils.defaultString(it0009.getBankl().getBanka(), "") : "")
-				.setBankn(StringUtils.defaultString(it0009.getBankn(), ""))
-				.setZweck(StringUtils.defaultString(it0009.getZweck(), ""));
+				.setBnksa(it0009.getBnksa() != null ? StringUtils.defaultString(it0009.getBnksa().getStext(), StringUtils.EMPTY) : StringUtils.EMPTY)
+				.setZlsch(it0009.getZlsch() != null ? it0009.getZlsch().getText1() : StringUtils.EMPTY)
+				.setEmftx(StringUtils.defaultString(it0009.getEmftx(), StringUtils.EMPTY))
+				.setBkplz(StringUtils.defaultString(it0009.getBkplz(), StringUtils.EMPTY))
+				.setBkort(StringUtils.defaultString(it0009.getBkort(), StringUtils.EMPTY))
+				.setBanks(it0009.getBanks() != null ? StringUtils.defaultString(it0009.getBanks().getLandx(), StringUtils.EMPTY) : StringUtils.EMPTY)
+				.setBankl(it0009.getBankl() != null ? StringUtils.defaultString(it0009.getBankl().getBanka(), StringUtils.EMPTY) : StringUtils.EMPTY)
+				.setBankn(StringUtils.defaultString(it0009.getBankn(), StringUtils.EMPTY))
+				.setZweck(StringUtils.defaultString(it0009.getZweck(), StringUtils.EMPTY));
 		}
 	}
 
@@ -105,6 +109,21 @@ public class IT0009ResponseWrapper extends ResourceSupport {
 	
 	private IT0009ResponseWrapper setSubty(String subty) {
 		this.subty = subty;
+		return this;
+	}
+	
+	/**
+	 * GET Subtype Name/Text.
+	 * 
+	 * @return
+	 */
+	@JsonProperty("subtype_text")
+	public String getSubtyText() {
+		return subtyText;
+	}
+	
+	private IT0009ResponseWrapper setSubtyText(String subtyText) {
+		this.subtyText = subtyText;
 		return this;
 	}
 

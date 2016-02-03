@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.abminvestama.hcms.core.model.constant.SAPInfoType;
 import com.abminvestama.hcms.core.model.entity.IT0185;
 import com.abminvestama.hcms.core.model.entity.ITCompositeKeys;
 import com.abminvestama.hcms.core.repository.IT0185Repository;
@@ -51,7 +52,7 @@ public class IT0185QueryServiceImpl implements IT0185QueryService {
 			return Optional.empty();
 		}
 		
-		return Optional.ofNullable(it0185Repository.findOneByCompositeKey(pernr, subty, endda, begda));		
+		return Optional.ofNullable(it0185Repository.findOneByCompositeKey(pernr, SAPInfoType.PERSONAL_ID.infoType(), subty, endda, begda));		
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class IT0185QueryServiceImpl implements IT0185QueryService {
 		}
 		
 		Optional<Collection<IT0185>> bunchOfIT0185 
-			= Optional.ofNullable(it0185Repository.findByPernr(pernr));
+			= Optional.ofNullable(it0185Repository.findByPernr(pernr, SAPInfoType.PERSONAL_ID.infoType()));
 		
 		return (bunchOfIT0185.isPresent()
 				? bunchOfIT0185.get().stream().collect(Collectors.toList())
@@ -75,11 +76,11 @@ public class IT0185QueryServiceImpl implements IT0185QueryService {
 		}
 		
 		if (StringUtils.isBlank(subty)) {
-			subty = "1"; // default to subtype '1' (i.e. Permanent Residence)
+			subty = "01"; // default to subtype '01' (i.e. Identity Card)
 		}
 		
 		Optional<Collection<IT0185>> bunchOfIT0185 
-			= Optional.ofNullable(it0185Repository.findByPernrAndSubty(pernr, subty));
+			= Optional.ofNullable(it0185Repository.findByPernrAndSubty(pernr, SAPInfoType.PERSONAL_ID.infoType(), subty));
 
 		return (bunchOfIT0185.isPresent() 
 					? bunchOfIT0185.get().stream().collect(Collectors.toList())

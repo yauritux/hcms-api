@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.abminvestama.hcms.common.util.CommonComparatorFunction;
+import com.abminvestama.hcms.core.model.constant.SAPInfoType;
 import com.abminvestama.hcms.core.model.entity.BNKA;
 import com.abminvestama.hcms.core.model.entity.IT0009;
 import com.abminvestama.hcms.core.model.entity.T005T;
 import com.abminvestama.hcms.core.model.entity.T042Z;
 import com.abminvestama.hcms.core.model.entity.T591S;
+import com.abminvestama.hcms.core.model.entity.T591SKey;
 import com.abminvestama.hcms.core.service.api.business.query.BNKAQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T005TQueryService;
 import com.abminvestama.hcms.core.service.api.business.query.T042ZQueryService;
@@ -80,9 +82,10 @@ public class IT0009RequestBuilderUtil {
 				it0009DB.setAnzhl(requestPayload.getAnzhl());
 				requestPayload.setIsDataChanged(true);
 			}
-			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBnksa(), it0009DB.getBnksa() != null ? it0009DB.getBnksa().getSubty() : "")) {
+			if (CommonComparatorFunction.isDifferentStringValues(requestPayload.getBnksa(), it0009DB.getBnksa() != null ? it0009DB.getBnksa().getId().getSubty() : StringUtils.EMPTY)) {
 				try {
-					Optional<T591S> newT591S = t591sQueryService.findById(Optional.ofNullable(requestPayload.getBnksa()));
+					T591SKey bnksaKey = new T591SKey(SAPInfoType.BANK_DETAILS.infoType(), requestPayload.getBnksa());
+					Optional<T591S> newT591S = t591sQueryService.findById(Optional.ofNullable(bnksaKey));
 					if (newT591S.isPresent()) {
 						it0009DB.setBnksa(newT591S.get());
 						requestPayload.setIsDataChanged(true);

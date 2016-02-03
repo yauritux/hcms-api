@@ -1,0 +1,3 @@
+ALTER TABLE IT2006 DROP CONSTRAINT it2006_pkey;
+
+ALTER TABLE IT2006 ADD PRIMARY KEY (pernr, infty, subty, endda, begda);

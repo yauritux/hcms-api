@@ -91,3 +91,4 @@ e.g. : `public void findRoleByName_existingName_roleObjectIsReturned()`
 ### Who do I talk to? ###
 
 1. Repo owner or admin : [yauritux@gmail.com](mailto:yauritux@gmail.com)
+=======

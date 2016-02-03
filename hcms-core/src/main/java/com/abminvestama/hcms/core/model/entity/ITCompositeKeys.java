@@ -24,6 +24,7 @@ public class ITCompositeKeys implements Serializable {
 	private static final long serialVersionUID = 3772040894998014331L;
 	
 	private Long pernr;
+	private String infty;
 	private String subty;
 	
 	@Temporal(TemporalType.DATE)
@@ -36,8 +37,9 @@ public class ITCompositeKeys implements Serializable {
 	
 	public ITCompositeKeys() {}
 	
-	public ITCompositeKeys(Long pernr, String subty, Date endda, Date begda) {
+	public ITCompositeKeys(Long pernr, String infty, String subty, Date endda, Date begda) {
 		this.pernr = pernr;
+		this.infty = infty;
 		this.subty = subty;
 		this.endda = endda;
 		this.begda = begda;
@@ -50,6 +52,15 @@ public class ITCompositeKeys implements Serializable {
 	 */
 	public Long getPernr() {
 		return pernr;
+	}
+	
+	/**
+	 * GET Infotype.
+	 * 
+	 * @return
+	 */
+	public String getInfty() {
+		return infty;
 	}
 	
 	/**
@@ -95,6 +106,10 @@ public class ITCompositeKeys implements Serializable {
 			return false;
 		}
 		
+		if (key.getInfty() != null ? !key.getInfty().equalsIgnoreCase(infty) : infty != null) {
+			return false;
+		}
+		
 		if (key.getSubty() != null ? !key.getSubty().equalsIgnoreCase(subty) : subty != null) {
 			return false;
 		}
@@ -113,6 +128,7 @@ public class ITCompositeKeys implements Serializable {
 	@Override
 	public int hashCode() {
 		int result = this.pernr != null ? this.pernr.hashCode() : 0;
+		result = result * 31 + (this.infty != null ? this.infty.hashCode() : 0);
 		result = result * 31 + (this.subty != null ? this.subty.hashCode() : 0);
 		result = result * 31 + (this.endda != null ? this.endda.hashCode() : 0);
 		result = result * 31 + (this.begda != null ? this.begda.hashCode() : 0);

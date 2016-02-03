@@ -1,0 +1,3 @@
+ALTER TABLE IT0022 DROP CONSTRAINT it0022_pkey;
+
+ALTER TABLE IT0022 ADD PRIMARY KEY (pernr, infty, subty, endda, begda);

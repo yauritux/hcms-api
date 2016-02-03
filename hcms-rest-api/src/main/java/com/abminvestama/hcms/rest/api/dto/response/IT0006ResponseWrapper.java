@@ -2,6 +2,7 @@ package com.abminvestama.hcms.rest.api.dto.response;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.hateoas.ResourceSupport;
 
 import com.abminvestama.hcms.core.model.entity.IT0006;
@@ -67,8 +68,8 @@ public class IT0006ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 				.setPernr(it0006.getId().getPernr())
-				.setSubty(it0006.getSubty() != null ? it0006.getSubty().getSubty() : "")
-				.setSubtyText(it0006.getSubty() != null ? it0006.getSubty().getStext() : "")
+				.setSubty(it0006.getSubty() != null ? (it0006.getSubty().getId() != null ? it0006.getSubty().getId().getSubty() : StringUtils.EMPTY) : StringUtils.EMPTY)
+				.setSubtyText(it0006.getSubty() != null ? it0006.getSubty().getStext() : StringUtils.EMPTY)
 				.setEndda(it0006.getId().getEndda()).setBegda(it0006.getId().getBegda())
 				.setAedtm(it0006.getAedtm()).setUname(it0006.getUname())
 				.setAnssa(it0006.getAnssa()).setName2(it0006.getName2())
@@ -87,7 +88,7 @@ public class IT0006ResponseWrapper extends ResourceSupport {
 	 * 
 	 * @return
 	 */
-	@JsonProperty("pernr")
+	@JsonProperty("ssn")
 	public long getPernr() {
 		return pernr;
 	}
@@ -117,7 +118,7 @@ public class IT0006ResponseWrapper extends ResourceSupport {
 	 * 
 	 * @return
 	 */
-	@JsonProperty("subty_text")
+	@JsonProperty("subtype_text")
 	public String getSubtyText() {
 		return subtyText;
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.abminvestama.hcms.core.model.entity.T591S;
+import com.abminvestama.hcms.core.model.entity.T591SKey;
 import com.abminvestama.hcms.core.repository.T591SRepository;
 import com.abminvestama.hcms.core.service.api.business.query.T591SQueryService;
 
@@ -32,7 +33,7 @@ public class T591SQueryServiceImpl implements T591SQueryService {
 	}
 
 	@Override
-	public Optional<T591S> findById(Optional<String> id) throws Exception {
+	public Optional<T591S> findById(Optional<T591SKey> id) throws Exception {
 		return id.map(pk -> {
 			return Optional.ofNullable(t591sRepository.findOne(pk));
 		}).orElse(Optional.empty());

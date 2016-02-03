@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.abminvestama.hcms.core.model.constant.SAPInfoType;
 import com.abminvestama.hcms.core.model.entity.IT0006;
 import com.abminvestama.hcms.core.model.entity.ITCompositeKeys;
 import com.abminvestama.hcms.core.repository.IT0006Repository;
@@ -44,7 +45,7 @@ public class IT0006QueryServiceImpl implements IT0006QueryService {
 			return Optional.empty(); 
 		}
 		
-		return Optional.ofNullable(it0006Repository.findOneByCompositeKey(pernr, subty.trim(), endda, begda));
+		return Optional.ofNullable(it0006Repository.findOneByCompositeKey(pernr, SAPInfoType.ADDRESS_DETAILS.infoType(), subty.trim(), endda, begda));
 	}
 	
 	@Override
@@ -74,7 +75,7 @@ public class IT0006QueryServiceImpl implements IT0006QueryService {
 		}
 		
 		Optional<Collection<IT0006>> bunchOfIT0006 
-			= Optional.ofNullable(it0006Repository.findByPernr(pernr));
+			= Optional.ofNullable(it0006Repository.findByPernr(pernr, SAPInfoType.ADDRESS_DETAILS.infoType()));
 		
 		return (bunchOfIT0006.isPresent()
 				? bunchOfIT0006.get().stream().collect(Collectors.toList())
@@ -92,7 +93,7 @@ public class IT0006QueryServiceImpl implements IT0006QueryService {
 		}
 		
 		Optional<Collection<IT0006>> bunchOfIT0006 
-			= Optional.ofNullable(it0006Repository.findByPernrAndSubty(pernr, subty));
+			= Optional.ofNullable(it0006Repository.findByPernrAndSubty(pernr, SAPInfoType.ADDRESS_DETAILS.infoType(), subty));
 
 		return (bunchOfIT0006.isPresent() 
 					? bunchOfIT0006.get().stream().collect(Collectors.toList())

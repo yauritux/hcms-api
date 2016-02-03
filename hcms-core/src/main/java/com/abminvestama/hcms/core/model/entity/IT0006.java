@@ -3,6 +3,7 @@ package com.abminvestama.hcms.core.model.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -24,7 +25,10 @@ public class IT0006 extends SAPAbstractEntity<ITCompositeKeys> {
 	private Long pernr;
 	
 	@ManyToOne
-	@JoinColumn(name = "subty", referencedColumnName = "subty", insertable = false, updatable = false)
+	@JoinColumns({
+		@JoinColumn(name = "infty", referencedColumnName = "infty", insertable = false, updatable = false),
+		@JoinColumn(name = "subty", referencedColumnName = "subty", insertable = false, updatable = false)
+	})
 	private T591S subty;
 	
 	public IT0006() {}

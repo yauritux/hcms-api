@@ -156,7 +156,6 @@ public class IT2006Controller extends AbstractResource {
 					Optional<User> currentUser = userQueryService.findByUsername(currentUser());
 				
 					if (updatedContainer.getEntity().isPresent()) {
-						System.out.println("IT2006Controller::edit::updating IT2006 Entity...");
 						it2006 = it2006CommandService.save(updatedContainer.getEntity().get(), currentUser.isPresent() ? currentUser.get() : null);
 					}
 				

@@ -10,8 +10,8 @@ import com.abminvestama.hcms.core.model.entity.IT0006;
 import com.abminvestama.hcms.core.model.entity.ITCompositeKeys;
 import com.abminvestama.hcms.core.service.api.DatabasePaginationQueryService;
 import com.abminvestama.hcms.core.service.api.DatabaseQueryService;
-
 /**
+
  * 
  * @author yauri (yauritux@gmail.com)
  * @version 1.0.0

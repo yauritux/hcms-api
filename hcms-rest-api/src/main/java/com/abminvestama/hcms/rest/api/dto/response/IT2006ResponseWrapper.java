@@ -42,7 +42,10 @@ public class IT2006ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 			.setPernr(it2006.getId().getPernr())
-			.setSubty(it2006.getSubty() != null ? StringUtils.defaultString(it2006.getSubty().getSubty(), StringUtils.EMPTY) : it2006.getId().getSubty())
+			.setSubty(it2006.getSubty() != null ? 
+					StringUtils.defaultString(it2006.getSubty().getId() != null ? 
+							it2006.getSubty().getId().getSubty() : StringUtils.EMPTY, StringUtils.EMPTY) 
+					: it2006.getId().getSubty())
 			.setEndda(it2006.getId().getEndda()).setBegda(it2006.getId().getBegda())
 			.setSubtyText(it2006.getSubty() != null ? StringUtils.defaultString(it2006.getSubty().getStext(), StringUtils.EMPTY) : StringUtils.defaultString(it2006.getId().getSubty(), StringUtils.EMPTY))
 			.setKtart(it2006.getKtart() != null ? it2006.getKtart().getKtart().intValue() : 0)

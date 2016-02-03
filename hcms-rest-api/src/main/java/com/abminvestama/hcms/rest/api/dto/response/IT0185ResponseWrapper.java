@@ -24,6 +24,7 @@ public class IT0185ResponseWrapper extends ResourceSupport {
 	
 	private long pernr;
 	private String subty;
+	private String subtyText;
 	private Date endda;
 	private Date begda;
 	
@@ -43,15 +44,19 @@ public class IT0185ResponseWrapper extends ResourceSupport {
 		} else {
 			this
 				.setPernr(it0185.getId().getPernr())
-				.setSubty(it0185.getSubty() != null ? StringUtils.defaultString(it0185.getSubty().getStext(), "") : it0185.getId().getSubty())
+				.setSubty(it0185.getSubty() != null ? 
+						StringUtils.defaultString(it0185.getSubty().getId() != null ? it0185.getSubty().getId().getSubty() : StringUtils.EMPTY, 
+								StringUtils.EMPTY) 
+						: it0185.getId().getSubty())
+				.setSubtyText(it0185.getSubty() != null ? StringUtils.defaultString(it0185.getSubty().getStext(), StringUtils.EMPTY) : StringUtils.EMPTY)
 				.setEndda(it0185.getId().getEndda()).setBegda(it0185.getId().getBegda())
-				.setIctyp(it0185.getIctyp() != null ? StringUtils.defaultString(it0185.getIctyp().getIctxt(), it0185.getIctyp().getIctyp()) : "")
-				.setIcnum(StringUtils.defaultString(it0185.getIcnum(), ""))
-				.setAuth1(StringUtils.defaultString(it0185.getAuth1(), ""))
+				.setIctyp(it0185.getIctyp() != null ? StringUtils.defaultString(it0185.getIctyp().getIctxt(), it0185.getIctyp().getIctyp()) : StringUtils.EMPTY)
+				.setIcnum(StringUtils.defaultString(it0185.getIcnum(), StringUtils.EMPTY))
+				.setAuth1(StringUtils.defaultString(it0185.getAuth1(), StringUtils.EMPTY))
 				.setFpdat(it0185.getFpdat() != null ? it0185.getFpdat() : null)
 				.setExpid(it0185.getExpid() != null ? it0185.getExpid() : null)
-				.setIsspl(StringUtils.defaultString(it0185.getIsspl(), ""))
-				.setIscot(it0185.getIscot() != null ? StringUtils.defaultString(it0185.getIscot().getLandx(), it0185.getIscot().getLand1()) : "");
+				.setIsspl(StringUtils.defaultString(it0185.getIsspl(), StringUtils.EMPTY))
+				.setIscot(it0185.getIscot() != null ? StringUtils.defaultString(it0185.getIscot().getLandx(), it0185.getIscot().getLand1()) : StringUtils.EMPTY);
 		}
 	}	
 	
@@ -82,6 +87,21 @@ public class IT0185ResponseWrapper extends ResourceSupport {
 	
 	private IT0185ResponseWrapper setSubty(String subty) {
 		this.subty = subty;
+		return this;
+	}
+	
+	/**
+	 * GET Subtype Name/Text.
+	 * 
+	 * @return
+	 */
+	@JsonProperty("subtype_text")
+	public String getSubtyText() {
+		return subtyText;
+	}
+	
+	private IT0185ResponseWrapper setSubtyText(String subtyText) {
+		this.subtyText = subtyText;
 		return this;
 	}
 	

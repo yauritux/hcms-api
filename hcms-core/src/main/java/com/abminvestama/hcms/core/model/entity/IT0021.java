@@ -29,7 +29,10 @@ public class IT0021 extends SAPAbstractEntity<ITCompositeKeys> {
 	private Long pernr;
 	
 	@ManyToOne
-	@JoinColumn(name = "subty", referencedColumnName = "subty", insertable = false, updatable = false)
+	@JoinColumns({
+		@JoinColumn(name = "infty", referencedColumnName = "infty", insertable = false, updatable = false),
+		@JoinColumn(name = "subty", referencedColumnName = "subty", insertable = false, updatable = false)
+	})
 	private T591S subty;
 	
 	public IT0021() {}

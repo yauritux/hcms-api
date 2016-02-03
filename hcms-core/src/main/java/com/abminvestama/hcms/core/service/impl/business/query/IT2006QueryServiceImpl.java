@@ -90,7 +90,7 @@ public class IT2006QueryServiceImpl implements IT2006QueryService {
 		}
 		
 		if (StringUtils.isBlank(subty)) {
-			subty = "1"; // default to subtype '1' (i.e. Permanent Residence)
+			subty = "10"; // default to subtype '1' (Quota Cuti Tahunan)
 		}
 		
 		Optional<Collection<IT2006>> bunchOfIT2006 

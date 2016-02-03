@@ -3,8 +3,8 @@ package com.abminvestama.hcms.core.model.entity;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -21,21 +21,22 @@ import javax.persistence.Table;
 public class T591S implements Serializable {
 
 	private static final long serialVersionUID = 4399458964581160475L;
-	
-	@Id
-	@Column(name = "subty", length = 4, nullable = false, unique = true)
-	private String subty;
+
+	@EmbeddedId
+	private T591SKey id;
 	
 	@Column(name = "stext", length = 40, nullable = false)
 	private String stext;
 	
-	/**
-	 * GET Subtype.
-	 * 
-	 * @return
-	 */
-	public String getSubty() {
-		return subty;
+	public T591S() {}
+	
+	public T591S(T591SKey id) {
+		this();
+		this.id = id;
+	}
+
+	public T591SKey getId() {
+		return id;
 	}
 	
 	/**
@@ -59,11 +60,15 @@ public class T591S implements Serializable {
 		
 		final T591S obj = (T591S) o;
 		
-		if (obj.getSubty() != null ? !obj.getSubty().equals(this.getSubty()) : this.getSubty() != null) {
+		if (obj.getId() != null ? !obj.getId().getInfty().equalsIgnoreCase(this.getId().getInfty()) : this.getId().getInfty() != null) {
 			return false;
 		}
 		
-		if (obj.getStext() != null ? !obj.getStext().equals(this.getStext()) : this.getStext() != null) {
+		if (obj.getId() != null ? !obj.getId().getSubty().equalsIgnoreCase(this.getId().getSubty()) : this.getId().getSubty() != null) {
+			return false;
+		}
+		
+		if (obj.getStext() != null ? !obj.getStext().equalsIgnoreCase(this.getStext()) : this.getStext() != null) {
 			return false;
 		}
 		
@@ -72,7 +77,8 @@ public class T591S implements Serializable {
 	
 	@Override
 	public int hashCode() {
-		int result = this.getSubty() != null ? this.getSubty().hashCode() : 0;
+		int result = this.getId().getInfty() != null ? this.getId().getInfty().hashCode() : 0;
+		result = result * 31 + (this.getId().getSubty() != null ? this.getId().getSubty().hashCode() : 0);
 		result = result * 31 + (this.getStext() != null ? this.getStext().hashCode() : 0);
 		return result;
 	}

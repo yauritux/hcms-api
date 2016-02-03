@@ -1,0 +1,3 @@
+ALTER TABLE T591S ADD INFTY character varying(4);
+
+COMMENT ON COLUMN T591S.INFTY IS 'Infotype';
